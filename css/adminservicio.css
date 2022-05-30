@@ -14,17 +14,28 @@ table{
   background-color: #c4d5df;
 
  }
-/* config  tabla y color*/
+/* fin config  tabla y color*/
 
 /*boton agregar servicios a la izquierda*/
 .btnagregarservicioizq{
     padding-left:75%;
 }
+/*fin boton agregar servicios a la izquierda*/
 
-/*fin boton agregar servicios a la izqueirda*/
+/*agregar servicio*/
 .agregarservicio{
 padding-left: 30%;
 padding-right: 30%;
 padding-top: 2%;
 }
+/*fin agregar servicio*/
 
+.btncancelarder{
+margin-left: 15%;
+display: inline-block;
+align-items: center;
+
+}
+
+
+ 
