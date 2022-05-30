@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/adminservicio.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Crear Cita</title>
+        <title>Editar Cita</title>
 
         <!-- Include jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -19,7 +19,6 @@
                 var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
                 date_input.datepicker({
                     format: 'mm/dd/yyyy',
-                    container: container,
                     todayHighlight: true,
                     autoclose: true,
                 })
@@ -41,19 +40,19 @@
     <body>
         <div class="container">
           <div class="section-title">
-            <h2>Realice su cita</h2>
-            <p>Haga su cita en un horario donde le sea comodo y deje alguna mensaje de ser necesario.</p>
+            <h2>Edite su cita</h2>
+            <p>Edite su cita si cometio algun error o por alguna razon necesita cambiarla.</p>
           </div>
           <form action="" method="post" role="" class="">
             <div class="row">
               <div class="col-md-3 form-group mt-3">
-                <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Fecha de la cita">
+                <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Fecha de la cita" value="06/16/2022">
                 <div class="validate"></div>
               </div>
               <div class="input-group col-md-4 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Servicio</option>
-                  <option value="Odontología">Odontología</option>
+                  <option value="Odontología" selected>Odontología</option>
                   <option value="Pediatría">Pediatría</option>
                   <option value="Ginecología">Ginecología</option>
                   <option value="Oftanmología">Oftanmología</option>
@@ -65,7 +64,7 @@
               <div class="input-group col-md-4 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Doctor</option>
-                  <option value="Odontología">Raúl Álvarez</option>
+                  <option value="Odontología" selected>Raúl Álvarez</option>
                   <option value="Pediatría">Sterben Mancolle</option>
                   <option value="Ginecología">Jolyne Cujoh</option>
                 </select>
@@ -75,14 +74,14 @@
               </div>
             </div>
             <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)"></textarea>
+              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)">Puede llegue unos 5 minutos tardes, perdonen las molestias!</textarea>
               <div class="validate"></div>
             </div>
             <div class="mb-3">
-              <div id="vali" class="sent-message">Su solicitud de cita se ha realizado con exito. Gracias!</div>
+              <div id="vali" class="sent-message">Su solicitud de cambio de cita se ha realizado con exito. Gracias!</div>
             </div>
             <div class="text-center">
-              <button type="button" onclick="validar()" class="btn btn-primary btn-lg btn-block ">Realizar Cita</button>
+              <button type="button" onclick="validar()" class="btn btn-primary btn-lg btn-block ">Editar Cita</button>
             </div>
           </form>
         </div>
