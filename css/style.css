@@ -161,7 +161,7 @@ header{
 
 .seccion-bienvenida{
 
-    background-image: url('img/hero-bg.jpg');
+    background-image: url('../img/hero-bg.jpg');
     height: 45rem;
     background-repeat: no-repeat;
     background-position: center center;
