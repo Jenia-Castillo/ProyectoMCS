@@ -1,0 +1,83 @@
+:root{
+    --color-grey:rgb(197, 194, 194);
+    --fuente-principal: "Open Sans", sans-serif;
+}
+
+.contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+body{
+   
+    font-family: var(--fuente-principal);
+
+}
+
+#resultado p{
+    font-size: 15px;
+    color: var(--color-celeste);
+}
+#resultado{
+    
+    width: 100%;
+    margin-bottom:  20px;
+    outline: none;
+    padding: 5px 10px;
+    border: solid 1px var(--color-gris);
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#resultado:hover{
+    background-color: var(--color-gris-secundario);
+}
+
+.btn{
+
+    background-color: var(--color-celesteClaro);
+    color: var(--color-blanco);
+    border-radius: 2rem;
+    padding: .7rem 3rem;
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+
+    background-color: var(--color-celesteHover);
+    
+}
+
+/* css de historiales medicos  */
+
+.historial{
+    border:solid 1px var(--color-grey);
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+}
+.historial p{
+    font-size: 15px;
+    color: var(--color-celeste);
+}
+.doc{
+    font-weight: bold;
+}
+.historiales{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px  ;
+}
+.historial:hover{
+    box-shadow: 1px 5px 10px var(--color-grey);
+    transform: scale(1.02);
+}
+.historial p:first-child {
+    border-bottom: solid 1px var(--color-grey);
+    padding-bottom: 10px;
+}

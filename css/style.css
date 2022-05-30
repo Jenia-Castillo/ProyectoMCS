@@ -1,0 +1,389 @@
+
+:root{
+    --color-celesteHover:rgb(0, 56, 109);
+    --color-celeste: #2C4964;
+    --rojo-cita: rgb(255, 62, 62);
+    --rojo-hover: red;
+    --color-celesteClaro: #3291e6;
+    --color-gris: rgb(172, 172, 172);
+    --fuente-principal: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --color-blanco: #ffff;
+    --color-gris-secundario: rgb(233, 231, 231);
+
+}
+
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img, picture{
+    width: 100%;
+    display: block;
+}
+
+.contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+body{
+    min-height: 100%; 
+    margin: 0;
+    position: relative;
+    background-color: #FFFFFF;
+    font-family:var(--fuente-principal);
+
+
+}
+
+h1{
+    color: var(--color-celeste);
+    font-size: 3rem;
+    margin: 2rem 0;
+}
+
+
+a{
+    color: var(--color-celeste);
+    text-decoration: none;
+}
+#nombre{
+    border: solid var(--color-celeste) 1px;
+    padding: 1rem 2rem;
+}
+
+
+label{
+
+    font-size: 2rem;
+    color: var(--color-celeste);
+    
+}
+header{
+    
+    width: 100%;
+    padding-top: 2rem ;
+    padding-bottom: 1rem;
+    background-color: #FFFFFF;
+    border-bottom: solid 1px var(--color-gris);
+}
+
+.navegacion{
+    width: 100%;
+}
+
+.navegacion a:hover{
+
+    color: var(--color-celesteClaro);
+    text-decoration: none;
+
+}
+
+.logo-nav{
+    height: 4.5rem;
+
+}
+
+.nav-2 a:hover:after{
+    margin-top: .5rem;
+    content: '';
+    display: block;
+    border-bottom: 2px solid var(--color-celesteClaro);
+    transition: ease-in-out .3s;
+}
+
+.navegacion{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navegacion a{
+    font-size: 1.5rem;
+}
+.nav-1{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: var(--color-celesteClaro)
+}
+.nav-2{
+
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+}
+
+.btn{
+
+    background-color: var(--color-celesteClaro);
+    color: var(--color-blanco);
+    border-radius: 2rem;
+    padding: .7rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover{
+
+    background-color: var(--color-celesteHover);
+    
+}
+
+.btnRed{
+
+    background-color: var(--rojo-cita);
+    color: var(--color-blanco);
+    border-radius: 2rem;
+    padding: .7rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btnRed:hover{
+
+    background-color: var(--rojo-hover);
+    
+}
+
+.seccion-bienvenida{
+
+    background-image: url('img/hero-bg.jpg');
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    
+}
+
+.bienvenida-info h1{
+
+    text-transform: uppercase;
+    font-size: 4rem;
+    margin: 0;
+    padding-top: 15rem;
+    color: var(--color-celeste);
+
+}
+
+.bienvenida-info p{
+    font-size: 2.5rem;
+    color: var(--color-celeste);
+    margin-top: .7rem;
+}
+
+.bienvenida-info .btn{
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+.nuestros-servicios{
+    margin-top: 4rem;
+}
+.nuestros-servicios h2{
+    font-size: 3rem;
+    color: var(--color-celeste);
+}
+
+.servicios{
+    display: flex;
+    gap: 2rem;
+}
+.servicio:hover{
+    transform: scale(1.02);
+    box-shadow: 1px 2px 5px var(--color-gris);
+}
+
+.servicio{
+    border: solid 1px var(--color-gris);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.servicio-info{
+    padding: 2rem;
+}
+
+.servicio-info h3{
+    color: var(--color-celeste);
+    font-size: 2rem;
+    margin-top: 0px;
+}
+
+.servicio-info p{
+    color: var(--color-celeste);
+    font-size: 1.5rem;
+    margin-top: 0px;
+}
+
+.citas-prog h2{
+    font-size: 3rem;
+    color: var(--color-celeste);
+}
+
+.citas{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.cita{
+    border: 1px solid var(--color-gris);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.cita:hover{
+    background-color: var(--color-gris-secundario);
+}
+.cita h3{
+    font-size: 2.5rem;
+    margin-top: 0;
+    color: var(--color-celeste);
+}
+.cita p{
+
+    color: var(--color-celeste);
+    font-size: 1.5rem;
+
+}
+.cita span{
+    color: var(--rojo-hover);
+}
+
+.botones{
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.citainfo h3{
+    color: var(--color-celeste);
+    font-size: 2rem;
+}
+.citainfo p{
+    color: var(--color-celesteClaro);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.citainfo span{
+    color: var(--color-celeste);
+    font-size: 1.5rem;
+}
+
+.finalsection{
+    border-top: 1px solid var(--color-gris);
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.final-content{
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+.footerlinks{
+    font-size: 1.8rem;
+    gap: 3rem;
+}
+.redes{
+    display: flex;
+    font-size: 3rem;
+    gap: 1rem;
+    color: var(--color-celeste);
+}
+.redes i:hover{
+    color: var(--color-celesteClaro);
+    cursor: pointer;
+}
+
+.derechos{
+    background-color: var(--color-gris-secundario)
+}
+.derechos p{
+    margin: 0;
+    padding: 1rem;
+    color: var(--color-celeste);
+    text-align: center;
+    font-size: 1.5rem
+}
+
+/*ADMINISTRADOR*/
+.busqueda-paciente{
+    display: flex;
+    gap: 1rem;
+}
+.resultado{
+    margin-top: 4 rem;
+}
+
+.resultado p{
+    font-size: 1.5rem;
+    color: var(--color-celeste);
+}
+
+.pacinp{
+    border-color: var(--color-gris);
+}
+
+.texta{
+    border-color: var(--color-gris);
+    width: 100%;
+    height: 20rem;
+    margin-bottom: 2rem;
+}
+
+/*NOSOTROS*/
+.nosotros{
+    margin-top: 4.8rem;
+}
+
+.nosotros_info{
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.nosotros_info img{
+    border-radius: 1rem;
+}
+
+.nosotros_info_det{
+    border: solid 1px var(--color-gris);
+    box-shadow: 1px 2px 3px var(--color-gris);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.nosotros_info_det p{
+    font-size: 1.5rem;
+    color: var(--color-celeste);
+    padding-bottom: .5rem;
+    border-bottom: solid 1px var(--color-gris);
+}
+.nosotros_info_det p:last-of-type{
+    border-bottom:none;
+}
+.nosotros_info_det h2{
+    font-size: 2rem;
+    color: var(--color-celeste);
+}
+
+.nosotros_info_det h2:first-child{
+    margin-top: 0;
+}
