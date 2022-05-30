@@ -25,6 +25,18 @@
                 })
             })
         </script>
+        <script>
+          window.onload = function WindowLoad(event) {
+            var x = document.getElementById("vali");
+            x.style.display = "none";
+        }
+          function validar(){
+            var x = document.getElementById("vali");
+            if (x.style.display === "none") {
+              x.style.display = "block";
+            }
+          }
+        </script>
     </head>
     <body>
         <div class="container">
@@ -34,55 +46,45 @@
           </div>
           <form action="" method="post" role="" class="">
             <div class="row">
-              <div class="col-md-4 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Su Nombre">
-                <div class="validate"></div>
-              </div>
-              <div class="col-md-4 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Su Email">
-                <div class="validate"></div>
-              </div>
-              <div class="col-md-4 form-group mt-3 mt-md-0">
-                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Su Telefono">
-                <div class="validate"></div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 form-group mt-3">
+              <div class="col-md-3 form-group mt-3">
                 <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Fecha de la cita">
                 <div class="validate"></div>
               </div>
-              <div class="col-md-4 form-group mt-3">
-                <select name="department" id="department" class="form-select">
-                  <option value="">Select Department</option>
-                  <option value="Department 1">Department 1</option>
-                  <option value="Department 2">Department 2</option>
-                  <option value="Department 3">Department 3</option>
+              <div class="input-group col-md-4 form-group mt-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option value="">Seleccione Servicio</option>
+                  <option value="Odontología">Odontología</option>
+                  <option value="Pediatría">Pediatría</option>
+                  <option value="Ginecología">Ginecología</option>
+                  <option value="Oftanmología">Oftanmología</option>
                 </select>
-                <div class="validate"></div>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="inputGroupSelect02">Servicio</label>
+                </div>
               </div>
-              <div class="col-md-4 form-group mt-3">
-                <select name="doctor" id="doctor" class="form-select">
-                  <option value="">Select Doctor</option>
-                  <option value="Doctor 1">Doctor 1</option>
-                  <option value="Doctor 2">Doctor 2</option>
-                  <option value="Doctor 3">Doctor 3</option>
+              <div class="input-group col-md-4 form-group mt-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option value="">Seleccione Doctor</option>
+                  <option value="Odontología">Raúl Álvarez</option>
+                  <option value="Pediatría">Sterben Mancolle</option>
+                  <option value="Ginecología">Jolyne Cujoh</option>
                 </select>
-                <div class="validate"></div>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="inputGroupSelect02">Doctor</label>
+                </div>
               </div>
             </div>
             <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)"></textarea>
               <div class="validate"></div>
             </div>
             <div class="mb-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
+              <div id="vali" class="sent-message">Su solicitud de cita se ha realizado con exito. Gracias!</div>
             </div>
-            <div class="text-center"><button type="submit">Make an Appointment</button></div>
+            <div class="text-center">
+              <button type="button" onclick="validar()" class="btn btn-primary btn-lg btn-block ">Realizar Cita</button>
+            </div>
           </form>
         </div>
     </body>
-    
 </html>
