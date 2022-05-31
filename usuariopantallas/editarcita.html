@@ -61,15 +61,29 @@
             <h2>Edite su cita</h2>
             <p>Edite su cita si cometio algun error o por alguna razon necesita cambiarla.</p>
           </div>
-          <form action="" method="post" role="" class="">
+        <form action="" method="post" role="" class="">
             <div class="row">
               <div class="col-md-3 form-group mt-3">
                 <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Fecha de la cita" value="06/16/2022">
                 <div class="validate"></div>
               </div>
-              <div class="input-group col-md-4 form-group mt-3">
+              <div class="input-group col-md-2 form-group mt-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option hidden value="">Seleccione la Hora</option>
+                  <option value="Consulta" selected>10:00 am</option>
+                  <option value="Odontología">12:00 am</option>
+                  <option value="Pediatría">2:00 pm</option>
+                  <option value="Ginecología">4:00 pm</option>
+                  <option value="Oftanmología">6:00 pm</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="inputGroupSelect02">Hora</label>
+                </div>
+              </div>
+              <div class="input-group col-md-3 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Servicio</option>
+                  <option value="Consulta">Consulta General</option>
                   <option value="Odontología" selected>Odontología</option>
                   <option value="Pediatría">Pediatría</option>
                   <option value="Ginecología">Ginecología</option>
@@ -79,7 +93,7 @@
                   <label class="input-group-text" for="inputGroupSelect02">Servicio</label>
                 </div>
               </div>
-              <div class="input-group col-md-4 form-group mt-3">
+              <div class="input-group col-md-3 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Doctor</option>
                   <option value="Odontología" selected>Raúl Álvarez</option>
@@ -92,17 +106,17 @@
               </div>
             </div>
             <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)">Puede llegue unos 5 minutos tardes, perdonen las molestias!</textarea>
-              <div class="validate"></div>
+                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)">Puede llegue unos 5 minutos tardes, perdonen las molestias!</textarea>
+                <div class="validate"></div>
             </div>
             <div class="mb-3">
-              <div id="vali" class="sent-message">Su solicitud de cambio de cita se ha realizado con exito. Gracias!</div>
+                <div id="vali" class="sent-message">Su solicitud de cambio de cita se ha realizado con exito. Gracias!</div>
             </div>
             <br><br>
             <div class="text-center">
-              <button type="button" onclick="validar()" class="btn btn-primary btn-lg btn-block ">Editar Cita</button>
+                <button type="button" onclick="validar()" class="btn btn-primary btn-lg btn-block ">Editar Cita</button>
             </div>
-          </form>
+        </form>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <footer class="finalsection">

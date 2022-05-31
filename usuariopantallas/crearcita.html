@@ -68,7 +68,20 @@
                 <input type="datetime" name="date" class="form-control datepicker" id="date" placeholder="Fecha de la cita">
                 <div class="validate"></div>
               </div>
-              <div class="input-group col-md-4 form-group mt-3">
+              <div class="input-group col-md-2 form-group mt-3">
+                <select class="custom-select" id="inputGroupSelect02">
+                  <option hidden value="">Seleccione la Hora</option>
+                  <option value="Consulta">10:00 am</option>
+                  <option value="Odontología">12:00 am</option>
+                  <option value="Pediatría">2:00 pm</option>
+                  <option value="Ginecología">4:00 pm</option>
+                  <option value="Oftanmología">6:00 pm</option>
+                </select>
+                <div class="input-group-append">
+                  <label class="input-group-text" for="inputGroupSelect02">Hora</label>
+                </div>
+              </div>
+              <div class="input-group col-md-3 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Servicio</option>
                   <option value="Consulta">Consulta General</option>
@@ -81,7 +94,7 @@
                   <label class="input-group-text" for="inputGroupSelect02">Servicio</label>
                 </div>
               </div>
-              <div class="input-group col-md-4 form-group mt-3">
+              <div class="input-group col-md-3 form-group mt-3">
                 <select class="custom-select" id="inputGroupSelect02">
                   <option hidden value="">Seleccione Doctor</option>
                   <option value="Odontología">Raúl Álvarez</option>
