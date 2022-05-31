@@ -235,6 +235,11 @@ header{
     margin-top: 0px;
 }
 
+.inicio-cita{
+    display: flex;
+    justify-content: space-between;
+}
+
 .citas-prog h2{
     font-size: 3rem;
     color: var(--color-celeste);
