@@ -4,6 +4,7 @@
     --color-celeste: #2C4964;
     --rojo-cita: rgb(255, 62, 62);
     --rojo-hover: red;
+    --rojo-cerrar:rgb(223, 59, 59);
     --color-celesteClaro: #3291e6;
     --color-gris: rgb(172, 172, 172);
     --fuente-principal: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -149,7 +150,7 @@ header{
 
 .btnRed{
 
-    background-color: var(--rojo-cita);
+    background-color: var(--rojo-cerrar);
     color: var(--color-blanco);
     border-radius: 2rem;
     padding: .7rem 3rem;
