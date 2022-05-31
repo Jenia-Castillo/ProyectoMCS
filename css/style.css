@@ -336,6 +336,11 @@ header{
 }
 
 /*ADMINISTRADOR*/
+
+.w100{
+    width: 100%;
+}
+
 .busqueda-paciente{
     display: flex;
     gap: 1rem;
