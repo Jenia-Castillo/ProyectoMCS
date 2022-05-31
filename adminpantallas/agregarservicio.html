@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="../css/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Agregar Servicio</title>
+        <script type = "text/javascript">  
+          function mensajesatisfactorio() {  
+
+
+             alert ("¡Se han guardado los datos satisfactoriamente!");  
+          }  
+    </script> 
     </head>
     <body>
       <header>
@@ -46,7 +53,9 @@
           
         </div>
           <center>
-        <button type="button" class="btn btn-primary">Agregar</button>
+            <a href="servicios.html">
+              <button type="button" class="btn btn-primary" onclick="mensajesatisfactorio();">Guardar</button>
+          </a> 
         <div class="btncancelarder">   
             <a href="servicios.html">
             <button type="button" class="btn btn-danger" >Cancelar</button>  

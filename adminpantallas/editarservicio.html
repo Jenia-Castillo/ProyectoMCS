@@ -6,6 +6,13 @@
         <link rel="stylesheet" href="../css/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Editar servicio</title>
+        <script type = "text/javascript">  
+          function mensajesatisfactorio() {  
+
+
+             alert ("¡Se han guardado los datos satisfactoriamente!");  
+          }  
+    </script> 
     </head>
     <body>
       <header>
@@ -45,7 +52,9 @@
               <input type="number" class="form-control" placeholder="Costo" value="10.00"> 
             </div>
            <center>
-              <button type="button" class="btn btn-primary">Guardar</button>
+            <a href="servicios.html">
+              <button type="button" class="btn btn-primary" onclick="mensajesatisfactorio();">Guardar</button>
+          </a> 
               <div class="btncancelarder">   
                   <a href="servicios.html">
                   <button type="button" class="btn btn-danger" >Cancelar</button>  
