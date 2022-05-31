@@ -387,3 +387,16 @@ header{
 .nosotros_info_det h2:first-child{
     margin-top: 0;
 }
+
+/*USUARIO*/
+
+.ver-tod{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.citas-prog h3, .historialus h3{
+    font-size: 1.5rem;
+    color: var(--color-celeste);
+}
