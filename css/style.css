@@ -100,6 +100,11 @@ header{
     transition: ease-in-out .3s;
 }
 
+.nav-2 a:last-of-type:hover:after{
+    display: none;
+    border-bottom: none;
+}
+
 .navegacion{
     
     display: flex;
