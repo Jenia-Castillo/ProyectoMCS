@@ -238,6 +238,7 @@ header{
 .inicio-cita{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .citas-prog h2{
