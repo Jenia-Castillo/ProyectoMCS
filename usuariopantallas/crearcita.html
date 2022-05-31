@@ -113,6 +113,63 @@
               <textarea class="form-control" name="message" rows="5" placeholder="Mensaje (Opcional)"></textarea>
               <div class="validate"></div>
             </div>
+
+            <div class="card bg-primary text-white rounded-3">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                  <h5 class="mb-0">Card details</h5>
+                </div>
+                <p class="small mb-2">Card type   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+                </svg></p>
+                
+                <a href="#!" type="submit" class="text-white"><i
+                    class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                <a href="#!" type="submit" class="text-white"><i
+                    class="fab fa-cc-visa fa-2x me-2"></i></a>
+                <a href="#!" type="submit" class="text-white"><i
+                    class="fab fa-cc-amex fa-2x me-2"></i></a>
+                <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+                <form class="mt-4">
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeName">Dueño de la tarjeta</label>
+                    <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                      placeholder="Dueño de la tarjeta" />
+                  </div>
+                  <div class="form-outline form-white mb-4">
+                    <label class="form-label" for="typeText">Numero de tarjeta</label>
+                    <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                      placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-6">
+                      <div class="form-outline form-white">
+                        <label class="form-label" for="typeExp">Expiracion</label>
+                        <input type="text" id="typeExp" class="form-control form-control-lg"
+                          placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-outline form-white">
+                        <label class="form-label" for="typeText">Cvv</label>
+                        <input type="password" id="typeText" class="form-control form-control-lg"
+                          placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <hr class="my-4">
+                <div class="d-flex justify-content-between">
+                  <p class="mb-2">Subtotal</p>
+                  <p class="mb-2">$20.00</p>
+                </div>
+                <div class="d-flex justify-content-between mb-4">
+                  <p class="mb-2">Total(Incl. taxes)</p>
+                  <p class="mb-2">$21.00</p>
+                </div>
+              </div>
+            </div>
+
             <div class="mb-3">
               <div id="vali" class="sent-message">Su solicitud de cita se ha realizado con exito. Gracias!</div>
             </div>
@@ -122,7 +179,7 @@
             </div>
           </form>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <footer class="finalsection">
           <div class="final-content contenedor">
             <a href="../index.html"><img src="../img/MCSSOLOLOGO.png" alt="logo-mcs" class="logo-nav"></a>
