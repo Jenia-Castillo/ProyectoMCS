@@ -26,6 +26,7 @@ html {
 
 img, picture{
     width: 100%;
+    height:fit-content;
     display: block;
 }
 
@@ -33,6 +34,13 @@ img, picture{
     width: 95%;
     max-width: 120rem;
     margin: 0 auto;
+}
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
 }
 
 body{
@@ -205,14 +213,22 @@ header{
 }
 
 .servicios{
-    display: flex;
+    display: grid;
     gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
 }
 .servicio:hover{
     transform: scale(1.02);
     box-shadow: 1px 2px 5px var(--color-gris);
 }
 
+.servicio:hover img{
+    filter: none;
+    transition: ease-in-out .3s;
+}
+.servicio img{
+    filter:grayscale(.5);
+}
 .servicio{
     border: solid 1px var(--color-gris);
     border-radius: 1rem;
@@ -227,6 +243,7 @@ header{
     color: var(--color-celeste);
     font-size: 2rem;
     margin-top: 0px;
+    margin-bottom: 1rem;
 }
 
 .servicio-info p{
@@ -355,11 +372,18 @@ header{
 }
 
 .pacinp{
-    border-color: var(--color-gris);
+    border: 1px solid var(--color-gris);
+    border-radius: 1rem;
+    padding: 0px 1rem;
 }
 
 .texta{
-    border-color: var(--color-gris);
+    font-size: 15px;
+    padding: 10px;
+    font-family: var(--fuente-principal);
+    background-color: var(--color-gris-secundario);
+    border: 1px solid var(--color-gris);
+    border-radius: 1rem;
     width: 100%;
     height: 20rem;
     margin-bottom: 2rem;
@@ -405,6 +429,37 @@ header{
     margin-top: 0;
 }
 
+/*TABLA*/
+.tabla{
+    border-spacing: 0;
+    font-size: 1.5rem;
+    color: var(--color-celeste);
+}
+
+.tabla .thead th{
+    margin: 0;
+    font-family: var(--fuente-principal);
+    border-bottom: 2px solid var(--color-gris);
+    text-align: center;
+    text-transform: capitalize;
+    padding: 2rem;
+}
+.tabla .tbody tr td{
+    margin: 0;
+    border-bottom: 1px solid var(--color-gris-secundario);
+    text-align: center;
+    font-family: var(--fuente-principal);
+    text-transform: capitalize;
+    padding: 2rem 3rem;
+}
+.tabla .tbody tr:last-of-type td{
+    border-bottom: none;
+}
+
+.tabla .tbody tr:hover{
+    background-color: var(--color-gris-secundario);
+}
+
 /*USUARIO*/
 
 .ver-tod{
@@ -416,4 +471,35 @@ header{
 .citas-prog h3, .historialus h3{
     font-size: 1.5rem;
     color: var(--color-celeste);
+}
+
+/*TARJETA*/
+.tarjeta{
+    border: 1px solid var(--color-gris);
+    border-radius: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+}
+
+.totales{
+    font-size: 1.5rem;
+    color: var(--color-celeste);
+}
+.bold{
+    font-weight: bold;
+}
+
+/*ASIDE*/
+.inicioPerfil{
+    margin: 2rem 0;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+.imagenPerfil{
+    border-radius: 8rem;
+    height: 11rem;
+    width: 12rem;
+    background-position: center center;
 }

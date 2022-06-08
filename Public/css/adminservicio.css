@@ -5,30 +5,16 @@ table .primera_fila{
 	background-color:#37b6ff;  /*color head tabla*/
   color: white;
 }
-table{
- margin-top: 1%;
-}
-.table-striped tbody tr:nth-of-type(odd){ /*color intercalado de tabla*/
-  background-color: rgb(250, 250, 250);
- }
- .table-hover tbody tr:hover{ /*esto cambia el color de la seleccion*/
-  background-color: #c4d5df;
-
- }
-/* fin config  tabla y color*/
 
 /*boton agregar servicios a la izquierda*/
 .btnagregarservicioizq{
-    padding-left:75%;
+  display: flex;
+  justify-content: flex-end;
 }
 /*fin boton agregar servicios a la izquierda*/
 
 /*agregar servicio*/
-.agregarservicio{
-padding-left: 30%;
-padding-right: 30%;
-padding-top: 2%;
-}
+
 /*fin agregar servicio*/
 
 .btncancelarder{

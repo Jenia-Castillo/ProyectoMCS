@@ -1,0 +1,49 @@
+<%- include('../Templates/headerUsuario') %>
+  <section class="contenedor">
+    <h1>Edite su cita</h1>
+    <form action="" method="post" role="" class="">
+      <div>
+        <div>
+          <input type="date" class="controls">
+        </div>
+        <div class="input-group col-md-2 form-group mt-3">
+          <select class="controls">
+            <option selected disabled>Seleccione la Hora</option>
+            <option value="">06:00 am</option>
+            <option value="">08:00 am</option>
+            <option value="">10:00 am</option>
+            <option value="">12:00 am</option>
+            <option value="">02:00 pm</option>
+            <option value="">04:00 pm</option>
+            <option value="">06:00 pm</option>
+          </select>
+        </div>
+        <div class="input-group col-md-3 form-group mt-3">
+          <select class="controls">
+            <option selected disabled>Seleccione Servicio</option>
+            <option value="Consulta">Consulta General</option>
+            <option value="Odontología">Odontología</option>
+            <option value="Pediatría">Pediatría</option>
+            <option value="Ginecología">Ginecología</option>
+            <option value="Oftanmología">Oftanmología</option>
+          </select>
+        </div>
+        <div class="input-group col-md-3 form-group mt-3">
+          <select class="controls">
+            <option selected disabled>Seleccione Doctor</option>
+            <option value="Odontología">Raúl Álvarez</option>
+            <option value="Pediatría">Sterben Mancolle</option>
+            <option value="Ginecología">Jolyne Cujoh</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <textarea class="texta" placeholder="Mensaje(Opcional)"></textarea>
+        <div class="validate"></div>
+      </div>
+      <div class="text-center">
+        <button type="button" onclick="validar()" class="btn center">Editar Cita</button>
+      </div>
+    </form>
+  </section>
+  <%- include('../Templates/footerUsuario') %>

@@ -1,0 +1,43 @@
+<%- include('../Templates/header') %>
+  <section class="aggHorario contenedor">
+    <h1>Editar horario de cita</h1>
+
+    <div class="agregarservicio">
+      <div class>
+        <input type="text" class="controls" id="" placeholder="nombre del servicio">
+      </div>
+      <input type="date" class="controls" placeholder="seleccionar hora de la cita">
+    </div> 
+
+    <div class>
+      <select class="controls">
+        <option disabled value="" selected>Seleccione la Hora</option>
+        <option value="">06:00 am</option>
+        <option value="">08:00 am</option>
+        <option value="">10:00 am</option>
+        <option value="">12:00 am</option>
+        <option value="">02:00 pm</option>
+        <option value="">04:00 pm</option>
+        <option value="">06:00 pm</option>
+      </select>
+    </div>
+
+    <div class="centrar">
+      <a href="calendariodecitas">
+        <button type="button" class="btn" onclick="mensajesatisfactorio();">Guardar</button>
+      </a>
+      <a href="calendariodecitas">
+        <button type="button" class="btnRed">Cancelar</button>
+      </a>
+    </div>
+  </section>
+
+  </body>
+  </html>
+
+  <script type="text/javascript">
+    function mensajesatisfactorio() {
+
+      alert("¡Se han guardado los datos satisfactoriamente!");
+    }  
+  </script>

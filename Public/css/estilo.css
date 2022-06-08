@@ -3,18 +3,6 @@
     --fuente-principal: "Open Sans", sans-serif;
 }
 
-.contenedor {
-    width: 95%;
-    max-width: 120rem;
-    margin: 0 auto;
-}
-
-body{
-   
-    font-family: var(--fuente-principal);
-
-}
-
 #resultado p{
     font-size: 15px;
     color: var(--color-celeste);
