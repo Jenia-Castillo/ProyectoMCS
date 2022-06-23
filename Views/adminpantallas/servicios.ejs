@@ -17,34 +17,15 @@
           </tr>
         </thead>
         <tbody class="tbody">
-          <tr>
-            <td>Consulta de Odontología</td>
-            <td>Consulta general de Odontología</td>
-            <td>B/. 10.00</td>
-            <td><a href="editarservicio" class="btn">Editar</a> <a href="" class="btnRed"
-                onclick="mensajesaeliminar();">Eliminar</a></td>
+          <% servicios.forEach(servicio => { %>
+            <tr>
+            <td><%= servicio.servicio %></td>
+            <td><%= servicio.descripcion %></td>
+            <td>B/. <%= servicio.precio %></td>
+            <td><a href="/editarservicio/<%= servicio.servicio %>" class="btn">Editar</a> 
+              <a href="/eliminar/<%= servicio.servicio %>" class="btnRed">Eliminar</a></td>
           </tr>
-          <tr>
-            <td>Consulta de Pediatría</td>
-            <td>Consulta general de Pediatría</td>
-            <td>B/. 10.00</td>
-            <td><a href="editarservicio" class="btn">Editar</a> <a href="" class="btnRed"
-                onclick="mensajesaeliminar();">Eliminar</a></td>
-          </tr>
-          <tr>
-            <td>Consulta de Ginecología</td>
-            <td>Consulta general de Ginecología</td>
-            <td>B/. 10.00</td>
-            <td><a href="editarservicio" class="btn">Editar</a> <a href="" class="btnRed"
-                onclick="mensajesaeliminar();">Eliminar</a></td>
-          </tr>
-          <tr>
-            <td>Consulta de Oftanmología</td>
-            <td>Consulta general de Oftanmología</td>
-            <td>B/. 10.00</td>
-            <td><a href="editarservicio" class="btn">Editar</a> <a href="" class="btnRed"
-                onclick="mensajesaeliminar();">Eliminar</a></td>
-          </tr>
+          <% }); %> 
         </tbody>
       </table>
   </section>

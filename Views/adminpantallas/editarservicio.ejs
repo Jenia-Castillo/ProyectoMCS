@@ -1,29 +1,29 @@
 <%- include('../Templates/header') %>
   <section class="aggHorario contenedor">
     <h1>Editar Servicio</h1>
+    <form action="/editar" method="post">
 
-    <div class="agregarservicio">
-      <div class>
-        <input type="text" class="controls" id="" placeholder="Nombre del servicio">
+      <div class="agregarservicio">
+        <!--<% //servicio.option == 'service' ? 'selected' : '' %> -->
+        <!--<input name="id" value="<%= //servicio.servicio %>" hidden> -->
+        <input type="text" class="controls" name="servicio" value="<%= servicio.servicio %>">
+        <textarea class="texta" name="descripcion"><%= servicio.descripcion %></textarea>
+        <input type="number" class="controls" placeholder="Precio" name="precio" value="<%= servicio.precio %>">
+        <div class="centrar">
+          <a href="calendariodecitas">
+            <input type="submit" class="btn" value="Guardar">
+          </a>
+          <a href="calendariodecitas">
+            <button type="button" class="btnRed">Cancelar</button>
+          </a>
+        </div>
       </div>
-      <textarea class="texta" placeholder="Descripción del servicio" ></textarea>
-    </div> 
 
-    <div class>
-        <input type="number" class="controls" placeholder="Precio">
-    </div>
-
-    <div class="centrar">
-      <a href="calendariodecitas">
-        <button type="button" class="btn" onclick="mensajesatisfactorio();">Guardar</button>
-      </a>
-      <a href="calendariodecitas">
-        <button type="button" class="btnRed">Cancelar</button>
-      </a>
-    </div>
+    </form>
   </section>
 
   </body>
+
   </html>
 
   <script type="text/javascript">

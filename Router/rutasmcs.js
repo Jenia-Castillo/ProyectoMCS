@@ -11,9 +11,44 @@ router.get('/inicioadministrador', (req, res)=>{
     res.render("adminpantallas/adminPerfil", {});
 })
 
+/* ============ SERVICIOS CRUD ============= */
+
+//MOSTRAR SERVICIOS
+router.get('/servicios', (req, res) => {
+    conn.query('SELECT * FROM servicios', (error, servicios)=>{
+        if(error) throw error
+        res.render("adminpantallas/servicios", {servicios});
+    })
+})
+
+//AGREGAR SERVICIO
 router.get('/agregarservicio', (req, res)=>{
     res.render("adminpantallas/agregarservicio", {});
 })
+
+router.post('/guardar', crud.guardar)
+
+//EDITAR SERVICIO
+router.get('/editarservicio/:servicio', (req, res) => {
+    const servicio = req.params.servicio;
+    conn.query('select * from servicios where servicio=?', [servicio], (error, servicio)=>{
+        if(error) throw error
+        res.render("adminpantallas/editarservicio", {servicio:servicio[0]});
+    })
+})
+
+router.post('/editar', crud.editar)
+
+//ELIMINAR SERVICIO, ETC
+router.get('/eliminar/:servicio', (req, res)=>{
+    const servicio = req.params.servicio;
+    conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results)=>{
+        if(error)throw error
+        res.redirect('/servicios');
+    })
+})
+
+/* ============= SERVICIOS CRUD FINAL ============= */
 
 router.get('/agregarhorario', (req, res)=>{
     res.render("adminpantallas/agregarhorario", {});
@@ -27,16 +62,8 @@ router.get('/editarhorario', (req, res)=>{
     res.render("adminpantallas/editarhorario", {});
 })
 
-router.get('/editarservicio', (req, res)=>{
-    res.render("adminpantallas/editarservicio", {});
-})
-
 router.get('/resutadodecita', (req, res)=>{
     res.render("adminpantallas/resultadoCita", {});
-})
-
-router.get('/servicios', (req, res)=>{
-    res.render("adminpantallas/servicios", {});
 })
 
 router.get('/calendariocitas', (req, res)=>{
