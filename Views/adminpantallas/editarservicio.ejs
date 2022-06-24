@@ -6,7 +6,7 @@
       <div class="agregarservicio">
         <!--<% //servicio.option == 'service' ? 'selected' : '' %> -->
         <!--<input name="id" value="<%= //servicio.servicio %>" hidden> -->
-        <input type="text" class="controls" name="servicio" value="<%= servicio.servicio %>">
+        <input type="text" class="controls" name="servicio" readonly value="<%= servicio.servicio %>">
         <textarea class="texta" name="descripcion"><%= servicio.descripcion %></textarea>
         <input type="number" class="controls" placeholder="Precio" name="precio" value="<%= servicio.precio %>">
         <div class="centrar">
