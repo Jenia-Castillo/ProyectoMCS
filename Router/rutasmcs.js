@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+const conn = require('../database/database')
+const crud = require('../controllers/crud')
+
 //RENDER INDEX
 router.get('/', (req, res)=>{
     res.render("index", {});

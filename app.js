@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 //TOMAR VARIABLES EN LA URL
 app.use(express.urlencoded({extended:false}));
 
-app.use(express(json))
+//app.use(express(json))
 //DEFINIMOS LA CARPETA DONDE ESTARAN NUESTROS VIEWS
 app.set('views', __dirname + '/Views');
 
