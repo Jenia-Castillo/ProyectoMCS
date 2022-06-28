@@ -50,7 +50,8 @@ router.get('/eliminar/:servicio', (req, res)=>{
         res.redirect('/servicios');
     })
 })
-
+/*procesos bd para paciente*/
+/*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
 
 router.get('/agregarhorario', (req, res)=>{
@@ -105,4 +106,12 @@ router.get('/preguntasfrecuentes', (req, res)=>{
 router.get('/perfilusuario', (req, res)=>{
     res.render("usuariopantallas/usuarioPerfil", {});
 })
+
+router.get('/iniciarsesion', (req, res)=>{
+    res.render("usuariopantallas/iniciarsesion", {});
+})
+router.get('/registrar', (req, res)=>{
+    res.render("usuariopantallas/registrar", {});
+})
+
 module.exports = router;
