@@ -12,6 +12,26 @@ exports.guardar = (req, res)=>{
         res.redirect('/servicios');
     })
 }
+/*insert de registrar paciente */
+exports.registrarpaciente = (req, res)=>{
+    const correo=req.body.correo;
+    const contrasena=req.body.contrasena;
+    const nombre=req.body.nombre;
+    const apellido=req.body.apellido;
+    const cedula=req.body.cedula;
+    const fechadenacimiento=req.body.fechadenacimiento;
+    const sexo=req.body.sexo;
+    const telefono=req.body.telefono;
+    const alergias =req.body.alergias;
+    const direccion=req.body.direccion;
+   
+    conn.query('insert into pacientes set ?', {correo, contrasena,nombre,apellido,cedula,fechadenacimiento,sexo,telefono,alergias,direccion}, (error, results)=>{
+        if(error)throw error
+        res.redirect('/'); //arreglar el redirec
+    })
+    
+  
+}
 
 //UPDATE
 exports.editar = (req, res)=>{

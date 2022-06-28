@@ -51,6 +51,7 @@ router.get('/eliminar/:servicio', (req, res)=>{
     })
 })
 /*procesos bd para paciente*/
+router.post('/registrarpaciente', crud.registrarpaciente)
 /*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
 

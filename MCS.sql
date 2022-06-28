@@ -67,11 +67,11 @@ CREATE TABLE IF NOT EXISTS `horarios` (
 -- Volcando estructura para tabla mcs.medicos
 CREATE TABLE IF NOT EXISTS `medicos` (
   `id_medico` int(11) NOT NULL AUTO_INCREMENT,
+  `correo` varchar(50) NOT NULL DEFAULT '',
+  `contrasena` varchar(50) NOT NULL DEFAULT '',
   `cedula` varchar(50) NOT NULL DEFAULT '',
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `apellido` varchar(50) NOT NULL DEFAULT '',
-  `correo` varchar(50) NOT NULL DEFAULT '',
-  `contrasena` varchar(50) NOT NULL DEFAULT '',
   `id_servicio` int(11) NOT NULL,
   PRIMARY KEY (`id_medico`),
   KEY `FK_medicos_servicios` (`id_servicio`),
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `fechadenacimiento` date NOT NULL,
   `sexo` varchar(50) NOT NULL,
   `telefono` varchar(50) NOT NULL,
-  `alergias` varchar(50) NOT NULL,
+  `alergias` varchar(50) DEFAULT 'ninguna',
   `direccion` text NOT NULL,
   PRIMARY KEY (`id_paciente`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
