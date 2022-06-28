@@ -5,30 +5,31 @@
     
     
     <form action="/registrarpaciente" method="post" >
+
       <div class="agregarservicio">
-        <input type="text" class="controls" id="" placeholder="Correo" name="correo" required>
+
+        <input type="email" class="controls" id="" placeholder="Correo" name="correo" required>
         <input type="password" class="controls" id="" placeholder="Contraseña" name="contrasena"required>
         <input type="text" class="controls" id="" placeholder="Nombre" name="nombre"required>
         <input type="text" class="controls" id="" placeholder="Apellido" name="apellido"required>
-        <input type="text" class="controls" id="" placeholder="Cedula" name="cedula"required>
-        <input type="text" class="controls" id="" placeholder="Fecha de nacimiento" name="fechadenacimiento"required>
+        <input type="tel" class="controls" id="" placeholder="Cedula" name="cedula"required>
+        <input type="date" class="controls" id="" placeholder="Fecha de nacimiento" name="fechadenacimiento"required>
         
         <select class="controls" name="sexo" required>
 
             <option>Femenino </option>
             <option>Masculino</option>
-            <option>Otro</option>
         
         </select>
-        <input type="text" class="controls" id="" placeholder="Telefono" name="telefono" required>
-        <input type="text" class="controls" id="" placeholder="Alergias" name="alergias">
-        <textarea class="texta" placeholder="Dirección" name="direccion"required></textarea>
+        <input type="tel" class="controls" id="" placeholder="Telefono" name="telefono" required>
+        <input type="text"" class="controls" id="" placeholder="Alergias" name="alergias">
+        <input type="text" class="controls" placeholder="Dirección" name="direccion" required>
         
         
 
         <div class="centrar">
           <input type="submit" class="btn" value="Registrar">
-          <a href="">
+          <a href="/iniciarsesion">
             <button type="button" class="btnRed">Cancelar</button>
           </a>
         </div>
@@ -40,11 +41,4 @@
 
   </html>
 
-  <script type="text/javascript">
-    function mensajesatisfactorio() {
-
-
-      alert("¡Se han guardado los datos satisfactoriamente!");
-    }  
-  </script>
 <%- include('../Templates/footerUsuario') %>

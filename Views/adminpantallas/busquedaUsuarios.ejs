@@ -3,21 +3,16 @@
     <section class="res contenedor">
         <h1>Pacientes</h1>
         <div class="resultados">
-            <div id="resultado">
-                <p>Carlos Rivera</p>
-                <a href="#"><button class="btn">ver perfil</button></a>
-            </div>
-            <div id="resultado">
-                <p>Sebastian Yatra</p>
-                <a href="#"><button class="btn">ver perfil</button></a>
-            </div>
-            <div id="resultado">
-                <p>Willie Colon</p>
-                <a href="#"><button class="btn">ver perfil</button></a>
-            </div>
+            <% pacientes.forEach( paciente => { %>
+                <div id="resultado">
+                    <p> <%= paciente.nombre %>, <%= paciente.apellido %> </p>
+                    <a href="#"><button class="btn">ver perfil</button></a>
+                </div>
+                <% }) %>
         </div>
     </section>
-    
-</body>
-<script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
-</html>
+
+    </body>
+    <script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+
+    </html>

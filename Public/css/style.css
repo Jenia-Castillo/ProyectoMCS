@@ -503,3 +503,12 @@ header{
     width: 12rem;
     background-position: center center;
 }
+
+.agregarservicio{
+
+    border-radius: 2rem;
+    border: solid 1px var(--color-gris);
+    padding: 2rem 2rem;
+    box-shadow: 1px 2px 3px var(--color-gris);
+
+}

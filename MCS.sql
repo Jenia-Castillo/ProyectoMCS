@@ -91,7 +91,6 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `fechadenacimiento` date NOT NULL,
   `sexo` varchar(50) NOT NULL,
   `telefono` varchar(50) NOT NULL,
-  `alergias` varchar(50) DEFAULT 'ninguna',
   `direccion` text NOT NULL,
   PRIMARY KEY (`id_paciente`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

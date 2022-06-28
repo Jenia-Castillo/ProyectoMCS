@@ -60,7 +60,10 @@ router.get('/agregarhorario', (req, res)=>{
 })
 
 router.get('/busquedausuarios', (req, res)=>{
-    res.render("adminpantallas/busquedausuarios", {});
+    conn.query("select * from pacientes", (error, pacientes)=>{
+        if(error) throw error
+        res.render("adminpantallas/busquedausuarios", {pacientes});
+    } );
 })
 
 router.get('/editarhorario', (req, res)=>{
