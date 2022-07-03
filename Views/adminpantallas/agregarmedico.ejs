@@ -1,0 +1,31 @@
+<%- include('../Templates/header') %>
+  <section class="contenedor">
+    <h1>Agregar Medico</h1>
+    <form action="/agregarmedico" method="post">
+      <div class="agregarservicio">
+
+        <input type="text" class="controls" id="" placeholder="Nombre del servicio" name="servicio">
+        <textarea class="texta" placeholder="Descripción del servicio" name="descripcion"></textarea>
+        <input type="number" class="controls" placeholder="Precio" name="precio">
+
+        <div class="centrar">
+          <input type="submit" class="btn" value="Guardar">
+          <a href="/medicos">
+            <button type="button" class="btnRed">Cancelar</button>
+          </a>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  </body>
+
+  </html>
+
+  <script type="text/javascript">
+    function mensajesatisfactorio() {
+
+
+      alert("¡Se han guardado los datos satisfactoriamente!");
+    }  
+  </script>

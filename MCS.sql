@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `preguntasfrecuentes` (
 -- Volcando estructura para tabla mcs.servicios
 CREATE TABLE IF NOT EXISTS `servicios` (
   `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` int(11) NOT NULL,
+  `servicio` INT(11) NOT NULL,
   `costo` float NOT NULL,
   `descripcion` text NOT NULL,
   PRIMARY KEY (`id_servicio`)

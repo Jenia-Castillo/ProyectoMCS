@@ -53,11 +53,15 @@ router.get('/eliminar/:servicio', (req, res)=>{
         res.redirect('/servicios');
     })
 })
+
+//AGREGAR MEDICO
+router.post('/agregarmedico', crud.registrarpaciente) //EDITANDO
+
 /*procesos bd para paciente*/
 router.post('/registrarpaciente', crud.registrarpaciente)
 /*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
-
+//RENDER ADMIN
 router.get('/agregarhorario', (req, res)=>{
     res.render("adminpantallas/agregarhorario", {});
 })
@@ -80,6 +84,15 @@ router.get('/resutadodecita', (req, res)=>{
 router.get('/calendariocitas', (req, res)=>{
     res.render("adminpantallas/calendariodecitas", {});
 })
+
+/*rutas medico */
+router.get('/medicos', (req, res)=>{
+    res.render("adminpantallas/medicos", {});
+})
+router.get('/agregarmedico', (req, res)=>{
+    res.render("adminpantallas/agregarmedico", {});
+})
+/*fin rutas medico */
 
 //RENDER USUARIO
 router.get('/citasprogramadas', (req, res)=>{
@@ -120,5 +133,6 @@ router.get('/iniciarsesion', (req, res)=>{
 router.get('/registrar', (req, res)=>{
     res.render("usuariopantallas/registrar", {});
 })
+
 
 module.exports = router;
