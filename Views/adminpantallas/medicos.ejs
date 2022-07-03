@@ -1,17 +1,38 @@
 <%- include('../Templates/header') %>
   <section class="contenedor">
-    <h1>Servicios</h1>
+    <h1>Médicos</h1>
     <div class="btnagregarservicioizq">
       <a href="agregarmedico"><button type="button" class="btn">Agregar médico</button> </a>
     </div>
 
-    <!--tabla bonita-->
-    <div class="">
-      <table class="tabla w100">
-        
-     
+   
+    <table class="tabla w100">
+        <thead class="thead">
+          <tr>
+            <th>Correo</th>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Servicio</th>
+            <th>Modificar</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <% medicos.forEach(medicos => { %>
+            <tr>
+            <td><%= medicos.correo %></td>
+            <td><%= medicos.cedula %></td>
+            <td><%= medicos.nombre %></td>
+            <td><%= medicos.apellido %></td>
+            <td><%= medicos.id_servicio%></td>
+            <% }); %> 
+         
+            
         </tbody>
+               
       </table>
+      
+      
   </section>
 
   </body>

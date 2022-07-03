@@ -27,6 +27,14 @@ router.get('/servicios', (req, res) => {
     })
 })
 
+//MOSTRAR SERVICIOS servicio probando
+router.get('/agregarmedico', (req, res) => {
+    conn.query('SELECT id_servicio,servicio FROM servicios ORDER BY servicio ASC', (error, servicios)=>{
+        if(error) throw error
+        res.render("adminpantallas/agregarmedico", {servicios});
+    })
+})
+
 //AGREGAR SERVICIO
 router.get('/agregarservicio', (req, res)=>{
     res.render("adminpantallas/agregarservicio", {});
@@ -54,8 +62,19 @@ router.get('/eliminar/:servicio', (req, res)=>{
     })
 })
 
-//AGREGAR MEDICO
-router.post('/agregarmedico', crud.registrarpaciente) //EDITANDO
+//rutas admin/medico
+router.post('/agregarmedico', crud.agregarmedico) 
+//mostrar medicos
+
+router.get('/medicos', (req, res) => {
+    conn.query('SELECT * FROM medicos', (error, medicos)=>{
+        if(error) throw error
+        res.render("adminpantallas/medicos", {medicos});
+    })
+}) 
+
+//fin rutas admin/medico
+
 
 /*procesos bd para paciente*/
 router.post('/registrarpaciente', crud.registrarpaciente)
