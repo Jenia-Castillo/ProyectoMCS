@@ -1,4 +1,34 @@
-const conn = require('../database/database')
+const conn = require('../database/database');
+const router = require('../Router/rutasmcs');
+
+//AUTENTI
+
+//LOGIN PACIENTE
+exports.login = (req, res)=>{
+
+    const correo = req.body.correo;
+    const contrasena = req.body.contrasena;
+
+    
+    
+
+    conn.query('select * from pacientes where correo = ?', [correo], (error, result)=>{
+
+        
+
+        if(result == 0 || contrasena != result[0].contrasena){
+
+            res.redirect('/')
+
+        }else{
+
+            res.redirect('/perfilusuario')
+            
+            
+        }
+    })
+
+}
 
 //SERVICIOS
 //INSERT

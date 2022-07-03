@@ -1,11 +1,14 @@
 <%- include('../Templates/headerUsuario') %>
 
     <section class="contenedor">
-        <h1>Iniciar sesion</h1>
+        <h1>Iniciar Sesión</h1>
         <h3></h3>
-        
-        <a href=""> <button class="btn">Ingresar</button></a>
-        <a href="registrar"> <button class="btn">Registrate aquí</button></a>
+        <form action="/login" method="post" class="agregarservicio">
+            <input type="email" name="correo" placeholder="Ingrese su correo" class="controls">
+            <input type="password" name="contrasena" placeholder="Ingrese su contraseña" class="controls">
+            <input type="submit" class="btn w100" value="Iniciar sesión">
+            <p class="texto">No tiene una cuenta? <a href="/registrar" class="link">Registrate aquí</a></p>
+        </form>
     </section>
 
 <%- include('../Templates/footerUsuario') %>

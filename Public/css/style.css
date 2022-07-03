@@ -512,3 +512,12 @@ header{
     box-shadow: 1px 2px 3px var(--color-gris);
 
 }
+
+.texto{
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+.link:hover{
+    text-decoration: underline;
+}

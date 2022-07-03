@@ -4,6 +4,9 @@ const router = express.Router();
 const conn = require('../database/database')
 const crud = require('../controllers/crud')
 
+//LOGIN USUARIO
+router.post('/login', crud.login);
+
 //RENDER INDEX
 router.get('/', (req, res)=>{
     res.render("index", {});
