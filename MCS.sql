@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `preguntasfrecuentes` (
 CREATE TABLE IF NOT EXISTS `servicios` (
   `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
   `servicio` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
-  `costo` float NOT NULL,
+  `precio` FLOAT NOT NULL,
   `descripcion` text NOT NULL,
   PRIMARY KEY (`id_servicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
