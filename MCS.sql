@@ -17,6 +17,43 @@
 CREATE DATABASE IF NOT EXISTS `mcs` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `mcs`;
 
+-- Volcando estructura para tabla mcs.preguntasfrecuentes
+CREATE TABLE IF NOT EXISTS `preguntasfrecuentes` (
+  `id_pregunta` int(11) NOT NULL AUTO_INCREMENT,
+  `pregunta` varchar(50) NOT NULL,
+  `respuesta` text NOT NULL,
+  PRIMARY KEY (`id_pregunta`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla mcs.servicios
+CREATE TABLE IF NOT EXISTS `servicios` (
+  `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` int(11) NOT NULL,
+  `costo` float NOT NULL,
+  `descripcion` text NOT NULL,
+  PRIMARY KEY (`id_servicio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla mcs.pacientes
+CREATE TABLE IF NOT EXISTS `pacientes` (
+  `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
+  `correo` varchar(50) NOT NULL,
+  `contrasena` varchar(50) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `cedula` varchar(50) NOT NULL,
+  `fechadenacimiento` date NOT NULL,
+  `sexo` varchar(50) NOT NULL,
+  `telefono` varchar(50) NOT NULL,
+  `direccion` text NOT NULL,
+  PRIMARY KEY (`id_paciente`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla mcs.admin
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
@@ -27,29 +64,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla mcs.citas
-CREATE TABLE IF NOT EXISTS `citas` (
-  `id_cita` int(11) NOT NULL AUTO_INCREMENT,
-  `costo` float NOT NULL,
-  `hora` time NOT NULL,
-  `fecha` date NOT NULL,
-  `estado` varchar(20) NOT NULL DEFAULT 'Pendiente',
-  `id_servicio` int(11) NOT NULL,
-  `id_paciente` int(11) NOT NULL,
-  `id_medico` int(11) NOT NULL,
-  `id_horario` int(11) NOT NULL,
-  PRIMARY KEY (`id_cita`),
-  KEY `FK_citas_servicios` (`id_servicio`),
-  KEY `FK_citas_pacientes` (`id_paciente`),
-  KEY `FK_citas_medicos` (`id_medico`),
-  KEY `FK_citas_horarios` (`id_horario`),
-  CONSTRAINT `FK_citas_horarios` FOREIGN KEY (`id_horario`) REFERENCES `horarios` (`id_horario`),
-  CONSTRAINT `FK_citas_medicos` FOREIGN KEY (`id_medico`) REFERENCES `medicos` (`id_medico`),
-  CONSTRAINT `FK_citas_pacientes` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`),
-  CONSTRAINT `FK_citas_servicios` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id_servicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla mcs.horarios
 CREATE TABLE IF NOT EXISTS `horarios` (
@@ -80,34 +95,32 @@ CREATE TABLE IF NOT EXISTS `medicos` (
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla mcs.pacientes
-CREATE TABLE IF NOT EXISTS `pacientes` (
-  `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(50) NOT NULL,
-  `contrasena` varchar(50) NOT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `apellido` varchar(50) NOT NULL,
-  `cedula` varchar(50) NOT NULL,
-  `fechadenacimiento` date NOT NULL,
-  `sexo` varchar(50) NOT NULL,
-  `telefono` varchar(50) NOT NULL,
-  `direccion` text NOT NULL,
-  PRIMARY KEY (`id_paciente`) USING BTREE
+
+-- Volcando estructura para tabla mcs.citas
+CREATE TABLE IF NOT EXISTS `citas` (
+  `id_cita` int(11) NOT NULL AUTO_INCREMENT,
+  `costo` float NOT NULL,
+  `hora` time NOT NULL,
+  `fecha` date NOT NULL,
+  `estado` varchar(20) NOT NULL DEFAULT 'Pendiente',
+  `id_servicio` int(11) NOT NULL,
+  `id_paciente` int(11) NOT NULL,
+  `id_medico` int(11) NOT NULL,
+  `id_horario` int(11) NOT NULL,
+  PRIMARY KEY (`id_cita`),
+  KEY `FK_citas_servicios` (`id_servicio`),
+  KEY `FK_citas_pacientes` (`id_paciente`),
+  KEY `FK_citas_medicos` (`id_medico`),
+  KEY `FK_citas_horarios` (`id_horario`),
+  CONSTRAINT `FK_citas_horarios` FOREIGN KEY (`id_horario`) REFERENCES `horarios` (`id_horario`),
+  CONSTRAINT `FK_citas_medicos` FOREIGN KEY (`id_medico`) REFERENCES `medicos` (`id_medico`),
+  CONSTRAINT `FK_citas_pacientes` FOREIGN KEY (`id_paciente`) REFERENCES `pacientes` (`id_paciente`),
+  CONSTRAINT `FK_citas_servicios` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id_servicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla mcs.preguntasfrecuentes
-CREATE TABLE IF NOT EXISTS `preguntasfrecuentes` (
-  `id_pregunta` int(11) NOT NULL AUTO_INCREMENT,
-  `pregunta` varchar(50) NOT NULL,
-  `respuesta` text NOT NULL,
-  PRIMARY KEY (`id_pregunta`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla mcs.resultados
+- Volcando estructura para tabla mcs.resultados
 CREATE TABLE IF NOT EXISTS `resultados` (
   `id_resultado` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` text NOT NULL,
@@ -125,16 +138,6 @@ CREATE TABLE IF NOT EXISTS `resultados` (
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla mcs.servicios
-CREATE TABLE IF NOT EXISTS `servicios` (
-  `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
-  `tipo` int(11) NOT NULL,
-  `costo` float NOT NULL,
-  `descripcion` text NOT NULL,
-  PRIMARY KEY (`id_servicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- La exportación de datos fue deseleccionada.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
