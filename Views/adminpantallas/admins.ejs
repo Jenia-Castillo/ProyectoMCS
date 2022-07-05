@@ -1,0 +1,35 @@
+<%- include('../Templates/header') %>
+<section class="contenedor">
+    <h1>Administradores</h1>
+    <div class="btnagregarservicioizq">
+      <a href="agregaradmin"><button type="button" class="btn">Agregar</button> </a>
+    </div>
+
+   
+    <table class="tabla w100">
+        <thead class="thead">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Modificar</th>
+          </tr>
+        </thead>
+        <tbody class="tbody">
+            <% admin.forEach(admin => { %>
+              <tr>
+              <td><%= admin.nombre %></td>
+              <td><%= admin.apellido %></td>
+              <td><%= admin.correo %></td>
+          
+              
+              <td><!--<a href="/editarservicio/" class="btn">Editar</a> -->
+                <a href="/eliminaradmin/<%= admin.id_admin %>" class="btnRed">Eliminar</a></td>
+              <% }); %> 
+          </tbody>
+      
+    </table>
+</section>
+</body>
+
+</html>

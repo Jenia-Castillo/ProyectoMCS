@@ -59,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(50) NOT NULL,
   `contrasena` varchar(50) NOT NULL,
+  	`nombre` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`apellido` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
   PRIMARY KEY (`id_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

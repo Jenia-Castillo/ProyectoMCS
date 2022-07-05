@@ -1,0 +1,35 @@
+<%- include('../Templates/header') %>
+  <section class="contenedor">
+    <h1>Agregar Administrador</h1>
+    <form action="/agregaradmin" method="post">
+      <div >
+        
+        <input type="email" class="controls" id="" placeholder="Correo" name="correo">
+        <input type="password" class="controls" id="" placeholder="Contraseña" name="contrasena">
+        <input type="text" class="controls" id="" placeholder="Nombre" name="nombre">
+        <input type="text" class="controls" id="" placeholder="Apellido" name="apellido">
+       
+    
+  
+
+        <div class="centrar">
+          <input type="submit" class="btn" value="Guardar">
+          <a href="/admins">
+            <button type="button" class="btnRed">Cancelar</button>
+          </a>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  </body>
+
+  </html>
+
+  <script type="text/javascript">
+    function mensajesatisfactorio() {
+
+
+      alert("¡Se han guardado los datos satisfactoriamente!");
+    }  
+  </script>

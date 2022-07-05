@@ -53,11 +53,26 @@ exports.agregarmedico= (req, res)=>{
     
     conn.query('insert into medicos set ?', {correo, contrasena,nombre,apellido,cedula,id_servicio}, (error, results)=>{
         if(error)throw error
-        res.redirect('/medicos'); //arreglar el redirec
+        res.redirect('/medicos'); 
     })
     
 }
 /*fin agregar medico */
+/*agregar admin */
+exports.agregaradmin= (req, res)=>{
+    const correo=req.body.correo;
+    const contrasena=req.body.contrasena;
+    const nombre=req.body.nombre;
+    const apellido=req.body.apellido;
+
+    
+    conn.query('insert into admin set ?', {correo, contrasena,nombre,apellido}, (error, results)=>{
+        if(error)throw error
+        res.redirect('/admins'); 
+    })
+    
+}
+/*fin agregar admin */
 /* ----- REGISTRO DE PACIENTES  ----------*/
 
 exports.registrarpaciente = (req, res)=>{

@@ -62,18 +62,48 @@ router.get('/eliminar/:servicio', (req, res)=>{
     })
 })
 
-//rutas admin/medico
+/*---procesos bd admin/medico---*/
 router.post('/agregarmedico', crud.agregarmedico) 
-//mostrar medicos
 
+    //mostrar medicos
 router.get('/medicos', (req, res) => {
     conn.query('SELECT * FROM medicos', (error, medicos)=>{
         if(error) throw error
         res.render("adminpantallas/medicos", {medicos});
     })
 }) 
+//eliminar medico
+router.get('/eliminarmedico/:id_medico', (req, res) => {
+    const id_medico = req.params.id_medico;
+    conn.query('DELETE FROM medicos WHERE id_medico=?',[id_medico] ,(error )=>{
+        if(error) throw error
+        res.redirect('/medicos');
+    })
+}) 
 
-//fin rutas admin/medico
+
+/*---fin procesos bd admin/medico---*/
+
+/*proceso bd admin/admins */
+    //agregar admin
+router.post('/agregaradmin', crud.agregaradmin) 
+    //mostrar admins
+    router.get('/admins', (req, res) => {
+        conn.query('SELECT * FROM admin', (error, admin)=>{
+            if(error) throw error
+            res.render("adminpantallas/admins", {admin});
+        })
+    }) 
+    
+    //eliminar admin
+router.get('/eliminaradmin/:id_admin', (req, res) => {
+    const id_admin = req.params.id_admin;
+    conn.query('DELETE FROM admin WHERE id_admin=?',[id_admin] ,(error )=>{
+        if(error) throw error
+        res.redirect('/admins');
+    })
+}) 
+/*fin proceso bd admin/admins */
 
 
 /*procesos bd para paciente*/
@@ -104,14 +134,26 @@ router.get('/calendariocitas', (req, res)=>{
     res.render("adminpantallas/calendariodecitas", {});
 })
 
-/*rutas medico */
+/*rutas medicos */
 router.get('/medicos', (req, res)=>{
     res.render("adminpantallas/medicos", {});
 })
 router.get('/agregarmedico', (req, res)=>{
     res.render("adminpantallas/agregarmedico", {});
 })
-/*fin rutas medico */
+/*fin rutas medicos */
+
+/*rutas admin/admins */
+router.get('/admins', (req, res)=>{
+    res.render("adminpantallas/admins", {});
+})
+
+router.get('/agregaradmin', (req, res)=>{
+    res.render("adminpantallas/agregaradmin", {});
+})
+/*fin rutas admin/admins */
+
+
 
 //RENDER USUARIO
 router.get('/citasprogramadas', (req, res)=>{
