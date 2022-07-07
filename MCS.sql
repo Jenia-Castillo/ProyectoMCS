@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `servicios` (
 CREATE TABLE IF NOT EXISTS `pacientes` (
   `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(50) NOT NULL,
-  `contrasena` varchar(50) NOT NULL,
+  `contrasena` varchar(100) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellido` varchar(50) NOT NULL,
   `cedula` varchar(50) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
 CREATE TABLE IF NOT EXISTS `admin` (
   `id_admin` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(50) NOT NULL,
-  `contrasena` varchar(50) NOT NULL,
+  `contrasena` varchar(100) NOT NULL,
   	`nombre` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
 	`apellido` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
   PRIMARY KEY (`id_admin`)
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `horarios` (
 CREATE TABLE IF NOT EXISTS `medicos` (
   `id_medico` int(11) NOT NULL AUTO_INCREMENT,
   `correo` varchar(50) NOT NULL DEFAULT '',
-  `contrasena` varchar(50) NOT NULL DEFAULT '',
+  `contrasena` varchar(100) NOT NULL DEFAULT '',
   `cedula` varchar(50) NOT NULL DEFAULT '',
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `apellido` varchar(50) NOT NULL DEFAULT '',

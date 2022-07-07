@@ -1,30 +1,30 @@
 <%- include('../Templates/headerUsuario') %>
 
-<section class="contenedor">
+  <section class="contenedor">
     <h1>Registrar</h1>
-    
-    
-    <form action="/registrarpaciente" method="post" >
+
+
+    <form action="/registrarpaciente" method="post">
 
       <div class="agregarservicio">
 
         <input type="email" class="controls" id="" placeholder="Correo" name="correo" required>
-        <input type="password" class="controls" id="" placeholder="Contraseña" name="contrasena"required>
-        <input type="text" class="controls" id="" placeholder="Nombre" name="nombre"required>
-        <input type="text" class="controls" id="" placeholder="Apellido" name="apellido"required>
-        <input type="tel" class="controls" id="" placeholder="Cedula" name="cedula"required>
-        <input type="date" class="controls" id="" placeholder="Fecha de nacimiento" name="fechadenacimiento"required>
-        
+        <input type="password" class="controls" id="" placeholder="Contraseña" name="contrasena" required>
+        <input type="text" class="controls" id="" placeholder="Nombre" name="nombre" required>
+        <input type="text" class="controls" id="" placeholder="Apellido" name="apellido" required>
+        <input type="tel" class="controls" id="" placeholder="Cedula" name="cedula" required>
+        <input type="date" class="controls" id="" placeholder="Fecha de nacimiento" name="fechadenacimiento" required>
+
         <select class="controls" name="sexo" required>
 
-            <option>Femenino </option>
-            <option>Masculino</option>
-        
+          <option>Femenino </option>
+          <option>Masculino</option>
+
         </select>
         <input type="tel" class="controls" id="" placeholder="Telefono" name="telefono" required>
         <input type="text" class="controls" placeholder="Dirección" name="direccion" required>
-        
-        
+
+
 
         <div class="centrar">
           <input type="submit" class="btn" value="Registrar">
@@ -40,4 +40,19 @@
 
   </html>
 
-<%- include('../Templates/footerUsuario') %>
+  <%- include('../Templates/footerUsuario') %>
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(typeof alert !='undefined' ){ %>
+      <script>
+        Swal.fire({
+          title: '<%= alertTitle %>',
+          text: '<%=alertMessage %>',
+          icon: '<%= alertIcon%>',
+          showConfirmButton: '<%= showConfirmButton%>',
+          timer: <%=timer%>
+    }).then(() => {
+            window.location = '/<%=ruta %>';
+          })
+      </script>
+      <% } %>

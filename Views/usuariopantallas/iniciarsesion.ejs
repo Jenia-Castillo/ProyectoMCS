@@ -4,11 +4,24 @@
         <h1>Iniciar Sesión</h1>
         <h3></h3>
         <form action="/login" method="post" class="agregarservicio">
-            <input type="email" name="correo" placeholder="Ingrese su correo" class="controls">
-            <input type="password" name="contrasena" placeholder="Ingrese su contraseña" class="controls">
+            <input type="email" required name="correo" placeholder="Ingrese su correo" class="controls">
+            <input type="password" required name="contrasena" placeholder="Ingrese su contraseña" class="controls">
             <input type="submit" class="btn w100" value="Iniciar sesión">
             <p class="texto">No tiene una cuenta? <a href="/registrar" class="link">Registrate aquí</a></p>
         </form>
     </section>
 
-<%- include('../Templates/footerUsuario') %>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if(typeof alert !='undefined' ){ %>
+      <script>
+        Swal.fire({
+          title: '<%= alertTitle %>',
+          text: '<%=alertMessage %>',
+          icon: '<%= alertIcon%>',
+          showConfirmButton: '<%= showConfirmButton%>',
+          timer: <%=timer%>
+    }).then(() => {
+            window.location = '/<%=ruta %>';
+          })
+      </script>
+      <% } %>

@@ -4,16 +4,16 @@ const router = express.Router();
 const conn = require('../database/database')
 const crud = require('../controllers/crud')
 
-//LOGIN USUARIO
-router.post('/login', crud.login);
-
+//INICIO SESION USUARIO
+router.post('/login', crud.login)
+router.get('/logout', crud.logout)
 //RENDER INDEX
-router.get('/', (req, res)=>{
+router.get('/', (req, res) => {
     res.render("index", {});
 })
 
 //RENDER ADMINISTRADOR
-router.get('/inicioadministrador', (req, res)=>{
+router.get('/inicioadministrador', (req, res) => {
     res.render("adminpantallas/adminPerfil", {});
 })
 
@@ -21,22 +21,22 @@ router.get('/inicioadministrador', (req, res)=>{
 
 //MOSTRAR SERVICIOS
 router.get('/servicios', (req, res) => {
-    conn.query('SELECT * FROM servicios', (error, servicios)=>{
-        if(error) throw error
-        res.render("adminpantallas/servicios", {servicios});
+    conn.query('SELECT * FROM servicios', (error, servicios) => {
+        if (error) throw error
+        res.render("adminpantallas/servicios", { servicios });
     })
 })
 
 //MOSTRAR SERVICIOS servicio probando
 router.get('/agregarmedico', (req, res) => {
-    conn.query('SELECT id_servicio,servicio FROM servicios ORDER BY servicio ASC', (error, servicios)=>{
-        if(error) throw error
-        res.render("adminpantallas/agregarmedico", {servicios});
+    conn.query('SELECT id_servicio,servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
+        if (error) throw error
+        res.render("adminpantallas/agregarmedico", { servicios });
     })
 })
 
 //AGREGAR SERVICIO
-router.get('/agregarservicio', (req, res)=>{
+router.get('/agregarservicio', (req, res) => {
     res.render("adminpantallas/agregarservicio", {});
 })
 
@@ -45,64 +45,64 @@ router.post('/guardar', crud.guardar)
 //EDITAR SERVICIO
 router.get('/editarservicio/:servicio', (req, res) => {
     const servicio = req.params.servicio;
-    conn.query('select * from servicios where servicio=?', [servicio], (error, servicio)=>{
-        if(error) throw error
-        res.render("adminpantallas/editarservicio", {servicio:servicio[0]});
+    conn.query('select * from servicios where servicio=?', [servicio], (error, servicio) => {
+        if (error) throw error
+        res.render("adminpantallas/editarservicio", { servicio: servicio[0] });
     })
 })
 
 router.post('/editar', crud.editar)
 
 //ELIMINAR SERVICIO, ETC
-router.get('/eliminar/:servicio', (req, res)=>{
+router.get('/eliminar/:servicio', (req, res) => {
     const servicio = req.params.servicio;
-    conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results)=>{
-        if(error)throw error
+    conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results) => {
+        if (error) throw error
         res.redirect('/servicios');
     })
 })
 
 /*---procesos bd admin/medico---*/
-router.post('/agregarmedico', crud.agregarmedico) 
+router.post('/agregarmedico', crud.agregarmedico)
 
-    //mostrar medicos
+//mostrar medicos
 router.get('/medicos', (req, res) => {
-    conn.query('SELECT * FROM medicos', (error, medicos)=>{
-        if(error) throw error
-        res.render("adminpantallas/medicos", {medicos});
+    conn.query('SELECT * FROM medicos', (error, medicos) => {
+        if (error) throw error
+        res.render("adminpantallas/medicos", { medicos });
     })
-}) 
+})
 //eliminar medico
 router.get('/eliminarmedico/:id_medico', (req, res) => {
     const id_medico = req.params.id_medico;
-    conn.query('DELETE FROM medicos WHERE id_medico=?',[id_medico] ,(error )=>{
-        if(error) throw error
+    conn.query('DELETE FROM medicos WHERE id_medico=?', [id_medico], (error) => {
+        if (error) throw error
         res.redirect('/medicos');
     })
-}) 
+})
 
 
 /*---fin procesos bd admin/medico---*/
 
 /*proceso bd admin/admins */
-    //agregar admin
-router.post('/agregaradmin', crud.agregaradmin) 
-    //mostrar admins
-    router.get('/admins', (req, res) => {
-        conn.query('SELECT * FROM admin', (error, admin)=>{
-            if(error) throw error
-            res.render("adminpantallas/admins", {admin});
-        })
-    }) 
-    
-    //eliminar admin
+//agregar admin
+router.post('/agregaradmin', crud.agregaradmin)
+//mostrar admins
+router.get('/admins', (req, res) => {
+    conn.query('SELECT * FROM admin', (error, admin) => {
+        if (error) throw error
+        res.render("adminpantallas/admins", { admin });
+    })
+})
+
+//eliminar admin
 router.get('/eliminaradmin/:id_admin', (req, res) => {
     const id_admin = req.params.id_admin;
-    conn.query('DELETE FROM admin WHERE id_admin=?',[id_admin] ,(error )=>{
-        if(error) throw error
+    conn.query('DELETE FROM admin WHERE id_admin=?', [id_admin], (error) => {
+        if (error) throw error
         res.redirect('/admins');
     })
-}) 
+})
 /*fin proceso bd admin/admins */
 
 
@@ -111,44 +111,44 @@ router.post('/registrarpaciente', crud.registrarpaciente)
 /*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
 //RENDER ADMIN
-router.get('/agregarhorario', (req, res)=>{
+router.get('/agregarhorario', (req, res) => {
     res.render("adminpantallas/agregarhorario", {});
 })
 
-router.get('/busquedausuarios', (req, res)=>{
-    conn.query("select * from pacientes", (error, pacientes)=>{
-        if(error) throw error
-        res.render("adminpantallas/busquedausuarios", {pacientes});
-    } );
+router.get('/busquedausuarios', (req, res) => {
+    conn.query("select * from pacientes", (error, pacientes) => {
+        if (error) throw error
+        res.render("adminpantallas/busquedausuarios", { pacientes });
+    });
 })
 
-router.get('/editarhorario', (req, res)=>{
+router.get('/editarhorario', (req, res) => {
     res.render("adminpantallas/editarhorario", {});
 })
 
-router.get('/resutadodecita', (req, res)=>{
+router.get('/resutadodecita', (req, res) => {
     res.render("adminpantallas/resultadoCita", {});
 })
 
-router.get('/calendariocitas', (req, res)=>{
+router.get('/calendariocitas', (req, res) => {
     res.render("adminpantallas/calendariodecitas", {});
 })
 
 /*rutas medicos */
-router.get('/medicos', (req, res)=>{
+router.get('/medicos', (req, res) => {
     res.render("adminpantallas/medicos", {});
 })
-router.get('/agregarmedico', (req, res)=>{
+router.get('/agregarmedico', (req, res) => {
     res.render("adminpantallas/agregarmedico", {});
 })
 /*fin rutas medicos */
 
 /*rutas admin/admins */
-router.get('/admins', (req, res)=>{
+router.get('/admins', (req, res) => {
     res.render("adminpantallas/admins", {});
 })
 
-router.get('/agregaradmin', (req, res)=>{
+router.get('/agregaradmin', (req, res) => {
     res.render("adminpantallas/agregaradmin", {});
 })
 /*fin rutas admin/admins */
@@ -156,42 +156,42 @@ router.get('/agregaradmin', (req, res)=>{
 
 
 //RENDER USUARIO
-router.get('/citasprogramadas', (req, res)=>{
+router.get('/citasprogramadas', (req, res) => {
     res.render("usuariopantallas/citasUsuario", {});
 })
 
-router.get('/crearcita', (req, res)=>{
+router.get('/crearcita', (req, res) => {
     res.render("usuariopantallas/crearcita", {});
 })
 
-router.get('/editarcita', (req, res)=>{
+router.get('/editarcita', (req, res) => {
     res.render("usuariopantallas/editarcita", {});
 })
 
-router.get('/formulario', (req, res)=>{
+router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
 })
 
-router.get('/historial', (req, res)=>{
+router.get('/historial', (req, res) => {
     res.render("usuariopantallas/historial", {});
 })
 
-router.get('/nosotros', (req, res)=>{
+router.get('/nosotros', (req, res) => {
     res.render("usuariopantallas/nosotros", {});
 })
 
-router.get('/preguntasfrecuentes', (req, res)=>{
+router.get('/preguntasfrecuentes', (req, res) => {
     res.render("usuariopantallas/preguntasfrecuentes", {});
 })
 
-router.get('/perfilusuario', (req, res)=>{
-    res.render("usuariopantallas/usuarioPerfil", {});
+router.get('/perfilusuario',crud.auth, (req, res) => {
+    res.render("usuariopantallas/usuarioPerfil", {id: crud.id});
+})
+router.get('/iniciarsesion', (req, res) => {
+    res.render('usuariopantallas/iniciarsesion', {})
 })
 
-router.get('/iniciarsesion', (req, res)=>{
-    res.render("usuariopantallas/iniciarsesion", {});
-})
-router.get('/registrar', (req, res)=>{
+router.get('/registrar', (req, res) => {
     res.render("usuariopantallas/registrar", {});
 })
 

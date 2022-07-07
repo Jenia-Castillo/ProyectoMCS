@@ -4,13 +4,23 @@ const express = require('express');
 const app = express();
 //DEFINIMOS EL PUERTO
 const port = 3000;
-
+//VARIABLES DE ENTORNO
+const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
+//DEFINIMOS EL PATH DE LAS VARIABLES DE ENTORNO
+dotenv.config({path: './env/.env'});
 //MOTOR DE PLANTILLA PARA RENDERIZAR NUESTRAS PAGINAS
 app.set('view engine', 'ejs');
-//TOMAR VARIABLES EN LA URL
+//CAPTURAR DATOS DE FORMULARIOS
 app.use(express.urlencoded({extended:false}));
-
+app.use(express.json())
 //app.use(express(json))
+app.use((req, res, next)=>{
+    if(!req.user)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+})
 //DEFINIMOS LA CARPETA DONDE ESTARAN NUESTROS VIEWS
 app.set('views', __dirname + '/Views');
 
