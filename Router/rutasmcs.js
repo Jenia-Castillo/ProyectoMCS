@@ -187,7 +187,7 @@ router.get('/preguntasfrecuentes', (req, res) => {
 
 router.get('/perfilusuario', crud.auth, (req, res) => {
 
-    res.render('usuariopantallas/usuarioperfil', {nombre:req.nombre})
+    res.render('usuariopantallas/usuarioperfil', {paciente:req.paciente})
 })
 
 router.get('/iniciarsesion', (req, res) => {

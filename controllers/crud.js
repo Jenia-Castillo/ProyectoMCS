@@ -54,7 +54,7 @@ exports.auth = async (req, res, next)=>{
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
             conn.query('select * from pacientes where id_paciente = ?', [decod.id],(error, result)=>{
                 if(!result){return next()}
-                req.nombre = result[0]
+                req.paciente = result[0]
                 return next();
             })
         } catch (error) {
