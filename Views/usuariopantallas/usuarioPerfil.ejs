@@ -4,10 +4,9 @@
 
         <div class="inicioPerfil">
             <img src="img/ejemploMCS.jpg" alt="imagen-Perfil" srcset="" class="imagenPerfil">
-            
-                <h1>Bienvenido, <%=correo%></h1>
-            
-
+            <% if(nombre){ %> 
+                <h1>Bienvenido, <%= nombre.nombre %> <%= nombre.apellido %> </h1>
+            <% } %> 
         </div>
 
         <section class="nuestros-servicios contenedor">

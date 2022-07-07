@@ -3,6 +3,7 @@ const router = require('../Router/rutasmcs');
 //DEFINIMOS BCRYPT
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const {promisify}= require('util')
 //LOGIN USUARIO
 
 exports.login = async (req, res) => {
@@ -18,7 +19,7 @@ exports.login = async (req, res) => {
 
                 res.render('usuariopantallas/iniciarsesion', {
                     alert: true,
-                    alertTitle: 'Error al Iniciar Sesión',
+                    alertTitle: 'Error de Inicio de Sesión',
                     alertMessage: 'Su usuario o contraseña son incorrectos',
                     alertIcon: 'error',
                     showConfirmButton: true,
@@ -27,12 +28,13 @@ exports.login = async (req, res) => {
                 })
 
             } else {
-
-                const id = result[0].id;
-
+                
+                const id = result[0].id_paciente;
+                
                 const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
                     expiresIn: process.env.JWT_TIEMPO_EXPIRA
                 })
+                
 
                 const cookieOptions = {
                     expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
@@ -40,7 +42,7 @@ exports.login = async (req, res) => {
                 }
 
                 res.cookie('jwt', token, cookieOptions)
-                res.redirect('/perfilusuario',)
+                res.redirect(`/perfilusuario`)
             }
         })
     }
@@ -50,12 +52,13 @@ exports.auth = async (req, res, next)=>{
     if(req.cookies.jwt){
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conn.query('select * from pacientes where id = ?', [decod.id],(error, result)=>{
+            conn.query('select * from pacientes where id_paciente = ?', [decod.id],(error, result)=>{
                 if(!result){return next()}
-                req.user = result[0]
+                req.nombre = result[0]
                 return next();
             })
         } catch (error) {
+            console.log(error)
             return next()
         }
     }else{

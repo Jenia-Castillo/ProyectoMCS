@@ -7,6 +7,7 @@ const crud = require('../controllers/crud')
 //INICIO SESION USUARIO
 router.post('/login', crud.login)
 router.get('/logout', crud.logout)
+
 //RENDER INDEX
 router.get('/', (req, res) => {
     res.render("index", {});
@@ -184,13 +185,9 @@ router.get('/preguntasfrecuentes', (req, res) => {
     res.render("usuariopantallas/preguntasfrecuentes", {});
 })
 
-router.get('/perfilusuario',crud.auth, (req, res) => {
-    const correo = req.body.correo;
-    conn.query('select nombre from pacientes where correo = ?', [correo], (error, result) => {
-        if(error)throw error
-        
-        res.render('usuariopantallas/usuarioperfil', {correo})
-    })
+router.get('/perfilusuario', crud.auth, (req, res) => {
+
+    res.render('usuariopantallas/usuarioperfil', {nombre:req.nombre})
 })
 
 router.get('/iniciarsesion', (req, res) => {
