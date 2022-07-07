@@ -185,8 +185,14 @@ router.get('/preguntasfrecuentes', (req, res) => {
 })
 
 router.get('/perfilusuario',crud.auth, (req, res) => {
-    res.render("usuariopantallas/usuarioPerfil", {id: crud.id});
+    const correo = req.body.correo;
+    conn.query('select nombre from pacientes where correo = ?', [correo], (error, result) => {
+        if(error)throw error
+        
+        res.render('usuariopantallas/usuarioperfil', {correo})
+    })
 })
+
 router.get('/iniciarsesion', (req, res) => {
     res.render('usuariopantallas/iniciarsesion', {})
 })
