@@ -4,8 +4,135 @@ const router = require('../Router/rutasmcs');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {promisify}= require('util')
-//LOGIN USUARIO
 
+//LOGIN MEDICO
+exports.loginmedico = async (req, res) => {
+
+    const correo = req.body.correo;
+    const contrasena = req.body.contrasena;
+
+    if (correo && contrasena) {
+
+        conn.query('select * from medicos where correo = ?', [correo], async (error, result) => {
+
+            if (result == 0 || !await bcryptjs.compare(contrasena, result[0].contrasena)) {
+
+                res.render('adminpantallas/iniciosesionMedico', {
+                    alert: true,
+                    alertTitle: 'Error de Inicio de Sesión',
+                    alertMessage: 'Su usuario o contraseña son incorrectos',
+                    alertIcon: 'error',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'iniciarsesionmed'
+                })
+
+            } else {
+                
+                const id = result[0].id_medico;
+                
+                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
+                    expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                })
+                
+
+                const cookieOptions = {
+                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
+                    httpOnly: true
+                }
+
+                res.cookie('jwt', token, cookieOptions)
+                res.redirect(`/iniciodoctor`)
+            }
+        })
+    }
+}
+
+exports.authmedico = async (req, res, next)=>{
+    if(req.cookies.jwt){
+        try {
+            const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            conn.query('select * from medicos where id_medico = ?', [decod.id],(error, result)=>{
+                if(!result){return next()}
+                req.medico = result[0]
+                return next();
+            })
+        } catch (error) {
+            console.log(error)
+            return next()
+        }
+    }else{
+        res.redirect('/iniciarsesionmed')
+    }
+}
+
+//FIN LOGIN MEDICO
+
+//LOGIN ADMINISTRADOR
+exports.loginadministrador = async (req, res) => {
+
+    const correo = req.body.correo;
+    const contrasena = req.body.contrasena;
+
+    if (correo && contrasena) {
+
+        conn.query('select * from admin where correo = ?', [correo], async (error, result) => {
+
+            if (result == 0 || !await bcryptjs.compare(contrasena, result[0].contrasena)) {
+
+                res.render('adminpantallas/iniciosesionadmin', {
+                    alert: true,
+                    alertTitle: 'Error de Inicio de Sesión',
+                    alertMessage: 'Su usuario o contraseña son incorrectos',
+                    alertIcon: 'error',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'iniciarsesionadmin'
+                })
+
+            } else {
+                
+                const id = result[0].id_admin;
+                
+                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
+                    expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                })
+                
+
+                const cookieOptions = {
+                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
+                    httpOnly: true
+                }
+
+                res.cookie('jwt', token, cookieOptions)
+                res.redirect(`/inicioadministrador`)
+            }
+        })
+    }
+}
+
+exports.authadmin = async (req, res, next)=>{
+    if(req.cookies.jwt){
+        try {
+            const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+            conn.query('select * from admin where id_admin = ?', [decod.id],(error, result)=>{
+                if(!result){return next()}
+                req.admin = result[0]
+                return next();
+            })
+        } catch (error) {
+            console.log(error)
+            return next()
+        }
+    }else{
+        res.redirect('/iniciarsesionadmin')
+    }
+}
+
+
+//FIN LOGIN ADMINISTRADOR
+
+//LOGIN USUARIO
 exports.login = async (req, res) => {
 
     const correo = req.body.correo;
@@ -66,6 +193,7 @@ exports.auth = async (req, res, next)=>{
     }
 }
 
+//LOGOUT
 exports.logout = (req, res)=>{
     res.clearCookie('jwt')
     return res.redirect('/')
@@ -85,33 +213,51 @@ exports.guardar = (req, res) => {
 }
 
 //agregar medico 
-exports.agregarmedico = (req, res) => {
+exports.agregarmedico = async(req, res) => {
 
     const correo = req.body.correo;
     const contrasena = req.body.contrasena;
+    let constrasenaHash = await bcryptjs.hash(contrasena, 1)
     const nombre = req.body.nombre;
     const apellido = req.body.apellido;
     const cedula = req.body.cedula;
     const id_servicio = req.body.id_servicio;
 
-    conn.query('insert into medicos set ?', { correo, contrasena, nombre, apellido, cedula, id_servicio }, (error, results) => {
+    conn.query('insert into medicos set ?', { correo, contrasena:constrasenaHash, nombre, apellido, cedula, id_servicio }, (error, results) => {
         if (error) throw error
-        res.redirect('/medicos');
+        res.render('adminpantallas/agregarmedico', {
+            alert: true,
+            alertTitle: 'Registro Completo',
+            alertMessage: 'Se ha registrado correctamente!',
+            alertIcon: 'success',
+            showConfirmButton: true,
+            timer: false,
+            ruta: ''
+        });
     })
 
 }
+
 /*fin agregar medico */
 /*agregar admin */
-exports.agregaradmin = (req, res) => {
+exports.agregaradmin = async(req, res) => {
     const correo = req.body.correo;
     const contrasena = req.body.contrasena;
+    let constrasenaHash = await bcryptjs.hash(contrasena, 1)
     const nombre = req.body.nombre;
     const apellido = req.body.apellido;
 
-
-    conn.query('insert into admin set ?', { correo, contrasena, nombre, apellido }, (error, results) => {
+    conn.query('insert into admin set ?', { correo, contrasena:constrasenaHash, nombre, apellido }, (error, results) => {
         if (error) throw error
-        res.redirect('/admins');
+        res.render('adminpantallas/agregaradmin', {
+            alert: true,
+            alertTitle: 'Registro Completo',
+            alertMessage: 'Se ha registrado correctamente!',
+            alertIcon: 'success',
+            showConfirmButton: true,
+            timer: false,
+            ruta: ''
+        });
     })
 
 }

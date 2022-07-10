@@ -6,16 +6,36 @@ const crud = require('../controllers/crud')
 
 //INICIO SESION USUARIO
 router.post('/login', crud.login)
+//INICIO SESION MEDICO
+router.post('/loginMed', crud.loginmedico)
+//INICIO SESION ADMIN
+router.post('/loginAdmin', crud.loginadministrador)
+//LOGOUT
 router.get('/logout', crud.logout)
+
+//LOGIN MEDICO
+router.get('/iniciarsesionmed',(req, res) => {
+    res.render("adminpantallas/iniciosesionMedico", {});
+})
+
+//LOGIN ADMIN
+router.get('/iniciarsesionadmin', (req, res) => {
+    res.render("adminpantallas/iniciosesionadmin", {});
+})
 
 //RENDER INDEX
 router.get('/', (req, res) => {
     res.render("index", {});
 })
 
+//RENDER DOCTOR PERFIL
+router.get('/iniciodoctor', crud.authmedico, (req, res) => {
+    res.render("adminpantallas/perfilDoctor", {medico:req.medico});
+})
+
 //RENDER ADMINISTRADOR
-router.get('/inicioadministrador', (req, res) => {
-    res.render("adminpantallas/adminPerfil", {});
+router.get('/inicioadministrador', crud.authadmin, (req, res) => {
+    res.render("adminpantallas/adminPerfil", {admin:req.admin});
 })
 
 /* ============ SERVICIOS CRUD ============= */

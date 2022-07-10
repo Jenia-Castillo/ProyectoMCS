@@ -16,8 +16,19 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:false}));
 app.use(express.json())
 //app.use(express(json))
+
 app.use((req, res, next)=>{
-    if(!req.user)
+    if(!req.medico)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+})
+app.use((req, res, next)=>{
+    if(!req.paciente)
+        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    next();
+})
+app.use((req, res, next)=>{
+    if(!req.admin)
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     next();
 })
