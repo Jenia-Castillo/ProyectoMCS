@@ -6,8 +6,10 @@ async function agregarmedico(){
     const correo = 'admin';
     const contrasena = '12345';
     let constrasenaHash = await bcryptjs.hash(contrasena, 1)
+    const nombre = 'Jhon';
+    const apellido = 'Simmons';
 
-    conn.query('insert into admin set ?', {correo, contrasena:constrasenaHash}, (error, results) => {
+    conn.query('insert into admin set ?', {correo, contrasena:constrasenaHash, nombre, apellido}, (error, results) => {
         if (error) throw error
         console.log('ADMIN AGREGADO')
     })
