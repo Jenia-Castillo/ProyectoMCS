@@ -102,8 +102,9 @@ router.get('/eliminarmedico/:id_medico', (req, res) => {
     })
 })
 
-
 /*---fin procesos bd admin/medico---*/
+
+
 
 /*proceso bd admin/admins
 //agregar admin
