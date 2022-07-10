@@ -6,6 +6,32 @@
         <a href="crearcita"><button class="btn">Nueva Cita</button></a>
     </div>
     <div class="citas">
+            <%
+                let num = 1;
+                citas.forEach(citas => { 
+            %>
+                <div class="cita">
+                    <h3>Cita <%= num %></h3>
+                    <p>
+                        Fecha: <span><%= citas.fecha %></span>
+                    </p>
+                    <p>
+                        Tipo: <span><%= citas.id_servicio %></span>
+                    </p>
+                    <p>
+                        Precio: <span><%= citas.costo %>$</span>
+                    </p>
+                    <div class="botones">
+                        <a href="/editarcita/<%= citas.id_cita %>" class="btn">Editar Cita</a> 
+                        <a href="/eliminarCita/<%= citas.id_cita %>" class="btnRed">Cancelar Cita</a>
+                    </div>
+                </div>
+                <%
+                    num++;
+                %>
+            <% }); %> 
+        
+
         <div class="cita">
             <h3>Cita 1</h3>
             <p>
@@ -22,6 +48,7 @@
                 <button class="btnRed">Cancelar Cita</button>
             </div>
         </div>
+
         <div class="cita">
             <h3>Cita 2</h3>
             <p>
