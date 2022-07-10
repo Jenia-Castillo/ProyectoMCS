@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Volcando estructura para tabla mcs.horarios
 CREATE TABLE IF NOT EXISTS `horarios` (
-  `id_horario` int(11) NOT NULL,
+  `id_horario` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `id_servicio` int(11) NOT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
 
 -- La exportación de datos fue deseleccionada.
 
-- Volcando estructura para tabla mcs.resultados
+-- Volcando estructura para tabla mcs.resultados
 CREATE TABLE IF NOT EXISTS `resultados` (
   `id_resultado` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` text NOT NULL,
