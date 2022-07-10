@@ -45,28 +45,12 @@
 
   </html>
 
-  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <% if(typeof alert !='undefined' ){ %>
-    <script>
-      Swal.fire({
-        title: '<%= alertTitle %>',
-        text: '<%=alertMessage %>',
-        icon: '<%= alertIcon%>',
-        showConfirmButton: '<%= showConfirmButton%>',
-      }).then(() => {
-        window.location = '/<%=ruta %>';
-      })
-    </script>
-    <% } %>
-
 <script>
-
   const mostrar = document.querySelector('.mostrarServ');
   mostrar.addEventListener('click', mostrarserv);
   function mostrarserv(){
     const div = document.querySelector('.menu-escondido');
     div.classList.toggle('mostrar')
   }
-
 </script>
     

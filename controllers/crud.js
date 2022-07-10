@@ -225,15 +225,7 @@ exports.agregarmedico = async(req, res) => {
 
     conn.query('insert into medicos set ?', { correo, contrasena:constrasenaHash, nombre, apellido, cedula, id_servicio }, (error, results) => {
         if (error) throw error
-        res.render('adminpantallas/agregarmedico', {
-            alert: true,
-            alertTitle: 'Registro Completo',
-            alertMessage: 'Se ha registrado correctamente!',
-            alertIcon: 'success',
-            showConfirmButton: true,
-            timer: false,
-            ruta: 'iniciodoctor'
-        });
+        res.redirect('/medicos')
     })
 
 }
