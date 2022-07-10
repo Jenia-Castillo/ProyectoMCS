@@ -41,7 +41,7 @@ router.get('/inicioadministrador', crud.authadmin, (req, res) => {
 /* ============ SERVICIOS CRUD ============= */
 
 //MOSTRAR SERVICIOS
-router.get('/servicios', (req, res) => {
+router.get('/servicios', crud.authadmin,(req, res) => {
     conn.query('SELECT * FROM servicios', (error, servicios) => {
         if (error) throw error
         res.render("adminpantallas/servicios", { servicios });
@@ -49,7 +49,7 @@ router.get('/servicios', (req, res) => {
 })
 
 //MOSTRAR SERVICIOS servicio probando
-router.get('/agregarmedico', (req, res) => {
+router.get('/agregarmedico', crud.authadmin,(req, res) => {
     conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
         if (error) throw error
         res.render("adminpantallas/agregarmedico", { servicios });
@@ -57,14 +57,14 @@ router.get('/agregarmedico', (req, res) => {
 })
 
 //AGREGAR SERVICIO
-router.get('/agregarservicio', (req, res) => {
+router.get('/agregarservicio', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarservicio", {});
 })
-
+//GUARDAR SERVICIO
 router.post('/guardar', crud.guardar)
 
 //EDITAR SERVICIO
-router.get('/editarservicio/:servicio', (req, res) => {
+router.get('/editarservicio/:servicio', crud.authadmin,(req, res) => {
     const servicio = req.params.servicio;
     conn.query('select * from servicios where servicio=?', [servicio], (error, servicio) => {
         if (error) throw error
@@ -75,7 +75,7 @@ router.get('/editarservicio/:servicio', (req, res) => {
 router.post('/editar', crud.editar)
 
 //ELIMINAR SERVICIO, ETC
-router.get('/eliminar/:servicio', (req, res) => {
+router.get('/eliminar/:servicio', crud.authadmin,(req, res) => {
     const servicio = req.params.servicio;
     conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results) => {
         if (error) throw error
@@ -87,14 +87,14 @@ router.get('/eliminar/:servicio', (req, res) => {
 router.post('/agregarmedico', crud.agregarmedico)
 
 //mostrar medicos
-router.get('/medicos', (req, res) => {
+router.get('/medicos', crud.authadmin,(req, res) => {
     conn.query('SELECT * FROM medicos', (error, medicos) => {
         if (error) throw error
         res.render("adminpantallas/medicos", { medicos });
     })
 })
 //eliminar medico
-router.get('/eliminarmedico/:id_medico', (req, res) => {
+router.get('/eliminarmedico/:id_medico', crud.authadmin,(req, res) => {
     const id_medico = req.params.id_medico;
     conn.query('DELETE FROM medicos WHERE id_medico=?', [id_medico], (error) => {
         if (error) throw error
@@ -133,18 +133,18 @@ router.post('/registrarpaciente', crud.registrarpaciente)
 /*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
 //RENDER ADMIN
-router.get('/agregarhorario', (req, res) => {
+router.get('/agregarhorario', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarhorario", {});
 })
 
-router.get('/busquedausuarios', (req, res) => {
+router.get('/busquedausuarios', crud.authadmin,(req, res) => {
     conn.query("select * from pacientes", (error, pacientes) => {
         if (error) throw error
         res.render("adminpantallas/busquedausuarios", { pacientes });
     });
 })
 
-router.get('/editarhorario', (req, res) => {
+router.get('/editarhorario', crud.authadmin,(req, res) => {
     res.render("adminpantallas/editarhorario", {});
 })
 
@@ -152,7 +152,7 @@ router.get('/resutadodecita', (req, res) => {
     res.render("adminpantallas/resultadoCita", {});
 })
 
-router.get('/calendariocitas', (req, res) => {
+router.get('/calendariocitas', crud.authadmin,(req, res) => {
     res.render("adminpantallas/calendariodecitas", {});
 })
 
@@ -165,7 +165,7 @@ router.get('/agregarmedico', (req, res) => {
 })
 /*fin rutas medicos */
 
-/*rutas admin/admins */
+/*rutas admin/admins
 router.get('/admins', (req, res) => {
     res.render("adminpantallas/admins", {});
 })
@@ -173,9 +173,7 @@ router.get('/admins', (req, res) => {
 router.get('/agregaradmin', (req, res) => {
     res.render("adminpantallas/agregaradmin", {});
 })
-/*fin rutas admin/admins */
-
-
+fin rutas admin/admins */
 
 //RENDER USUARIO
 router.get('/citasprogramadas', (req, res) => {
