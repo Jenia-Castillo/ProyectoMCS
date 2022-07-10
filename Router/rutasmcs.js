@@ -50,7 +50,7 @@ router.get('/servicios', (req, res) => {
 
 //MOSTRAR SERVICIOS servicio probando
 router.get('/agregarmedico', (req, res) => {
-    conn.query('SELECT id_servicio,servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
+    conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
         if (error) throw error
         res.render("adminpantallas/agregarmedico", { servicios });
     })

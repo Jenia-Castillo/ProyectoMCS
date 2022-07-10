@@ -232,7 +232,7 @@ exports.agregarmedico = async(req, res) => {
             alertIcon: 'success',
             showConfirmButton: true,
             timer: false,
-            ruta: ''
+            ruta: 'iniciodoctor'
         });
     })
 
