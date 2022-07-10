@@ -105,7 +105,7 @@ router.get('/eliminarmedico/:id_medico', (req, res) => {
 
 /*---fin procesos bd admin/medico---*/
 
-/*proceso bd admin/admins */
+/*proceso bd admin/admins
 //agregar admin
 router.post('/agregaradmin', crud.agregaradmin)
 //mostrar admins
@@ -124,7 +124,7 @@ router.get('/eliminaradmin/:id_admin', (req, res) => {
         res.redirect('/admins');
     })
 })
-/*fin proceso bd admin/admins */
+fin proceso bd admin/admins */
 
 
 /*procesos bd para paciente*/

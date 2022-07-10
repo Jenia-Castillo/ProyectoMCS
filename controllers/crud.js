@@ -231,29 +231,6 @@ exports.agregarmedico = async(req, res) => {
 }
 
 /*fin agregar medico */
-/*agregar admin */
-exports.agregaradmin = async(req, res) => {
-    const correo = req.body.correo;
-    const contrasena = req.body.contrasena;
-    let constrasenaHash = await bcryptjs.hash(contrasena, 1)
-    const nombre = req.body.nombre;
-    const apellido = req.body.apellido;
-
-    conn.query('insert into admin set ?', { correo, contrasena:constrasenaHash, nombre, apellido }, (error, results) => {
-        if (error) throw error
-        res.render('adminpantallas/agregaradmin', {
-            alert: true,
-            alertTitle: 'Registro Completo',
-            alertMessage: 'Se ha registrado correctamente!',
-            alertIcon: 'success',
-            showConfirmButton: true,
-            timer: false,
-            ruta: ''
-        });
-    })
-
-}
-/*fin agregar admin */
 /* ----- REGISTRO DE PACIENTES  ----------*/
 
 exports.registrarpaciente = async (req, res) => {
