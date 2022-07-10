@@ -48,6 +48,14 @@ router.get('/servicios', crud.authadmin,(req, res) => {
     })
 })
 
+//MOSTRAR CITAS
+router.get('/citasprogramadas', (req, res) => {
+    conn.query('SELECT * FROM citas', (error, citas) => {
+        if (error) throw error
+        res.render("usuariopantallas/citasUsuario", { citas });
+    })
+})
+
 //MOSTRAR SERVICIOS servicio probando
 router.get('/agregarmedico', crud.authadmin,(req, res) => {
     conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
@@ -80,6 +88,15 @@ router.get('/eliminar/:servicio', crud.authadmin,(req, res) => {
     conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results) => {
         if (error) throw error
         res.redirect('/servicios');
+    })
+})
+
+//ELIMINAR Cita, ETC
+router.get('/eliminarCita/:seleccionada', (req, res) => {
+    const cita = req.params.seleccionada;
+    conn.query('delete from citas WHERE id_cita = ?', [cita], (error, results) => {
+        if (error) throw error
+        res.redirect('/citasprogramadas');
     })
 })
 
@@ -184,8 +201,13 @@ router.get('/crearcita', (req, res) => {
     res.render("usuariopantallas/crearcita", {});
 })
 
-router.get('/editarcita', (req, res) => {
-    res.render("usuariopantallas/editarcita", {});
+//EDITAR CITA
+router.get('/editarcita/:seleccionada', (req, res) => {
+    const citas = req.params.seleccionada;
+    conn.query('select * from citas where id_cita=?', [citas], (error, citas) => {
+        if (error) throw error
+        res.render("usuariopantallas/editarcita", { citas: citas[0] });
+    })
 })
 
 router.get('/formulario', (req, res) => {
