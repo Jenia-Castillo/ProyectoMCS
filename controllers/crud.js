@@ -212,6 +212,16 @@ exports.guardar = (req, res) => {
     })
 }
 
+//Guardar pregunta
+exports.guardarpregunta = (req, res) => {
+    const pregunta = req.body.pregunta;
+    const respuesta = req.body.respuesta;
+
+    conn.query('insert into preguntasfrecuentes set ?', { pregunta, respuesta }, (error, results) => {
+        if (error) throw error
+        res.redirect('/inicioadministrador');
+    })
+}
 //agregar medico 
 exports.agregarmedico = async(req, res) => {
 

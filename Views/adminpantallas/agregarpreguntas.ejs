@@ -1,12 +1,11 @@
 <%- include('../Templates/header') %>
   <section class="contenedor">
-    <h1>Agregar Servicio</h1>
-    <form action="/guardar" method="post">
+    <h1>Agregar Pregunta</h1>
+    <form action="/guardarpregunta" method="post">
       <div class="agregarservicio">
 
-        <input type="text" class="controls" id="" placeholder="Nombre del servicio" name="servicio">
-        <textarea class="texta" placeholder="Descripción del servicio" name="descripcion"></textarea>
-        <input type="number" class="controls" placeholder="Precio" name="precio">
+        <input type="text" class="controls" id="" placeholder="Escriba su pregunta" name="pregunta">
+        <textarea class="texta" placeholder="Ingrese la respuesta" name="respuesta"></textarea>
 
         <div class="centrar">
           <input type="submit" class="btn" value="Guardar">

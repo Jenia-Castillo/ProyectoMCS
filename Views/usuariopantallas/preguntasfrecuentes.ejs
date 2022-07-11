@@ -6,11 +6,14 @@
 
         <div class="preguntasfrecuentes">
 
-            <div class="Pregunta">
-                <p>Pregunta</p>
-                <p>Respuesta:</p>
-                <p>lolo</p>
-            </div>
+            <% pregunta.forEach(preg => { %>
+                <div class="Pregunta">
+                    <p><%= preg.pregunta  %> </p>
+                    <p><%= preg.respuesta %> </p>
+                    
+                </div>
+            <% }) %>
+           
             
            
             

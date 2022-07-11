@@ -88,6 +88,14 @@ router.get('/agregarmedico', crud.authadmin,(req, res) => {
 router.get('/agregarservicio', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarservicio", {});
 })
+
+//AGREGAR PREGUNTAS FRECUENTES
+router.get('/agregarpreguntas', crud.authadmin,(req, res) => {
+      res.render("adminpantallas/agregarpreguntas", {});
+})
+//AGREGAR PREGUNTA
+router.post('/guardarpregunta',crud.guardarpregunta)
+
 //GUARDAR SERVICIO
 router.post('/guardar', crud.guardar)
 
@@ -173,7 +181,16 @@ router.post('/registrarpaciente', crud.registrarpaciente)
 router.get('/agregarhorario', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarhorario", {});
 })
+//eliminar paceinte
+router.get('/eliminarpaciente/:id_paciente', crud.authadmin,(req, res) => {
+    const id_paciente = req.params.id_paciente;
+    conn.query('DELETE FROM pacientes WHERE id_paciente=?', [id_paciente], (error) => {
+        if (error) throw error
+        res.redirect('/busquedaUsuarios');
+    })
+})
 
+//mostrar pacientes
 router.get('/busquedausuarios', crud.authadmin,(req, res) => {
     conn.query("select * from pacientes", (error, pacientes) => {
         if (error) throw error
@@ -234,6 +251,7 @@ router.get('/editarcita/:seleccionada', (req, res) => {
     })
 })
 
+
 router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
 })
@@ -247,7 +265,10 @@ router.get('/nosotros', (req, res) => {
 })
 
 router.get('/preguntasfrecuentes', (req, res) => {
-    res.render("usuariopantallas/preguntasfrecuentes", {});
+    conn.query('SELECT * FROM preguntasfrecuentes', (error, pregunta) => {
+        if (error) throw error
+        res.render("usuariopantallas/preguntasfrecuentes", { pregunta });
+    })
 })
 
 router.get('/perfilusuario', crud.auth, (req, res) => {
