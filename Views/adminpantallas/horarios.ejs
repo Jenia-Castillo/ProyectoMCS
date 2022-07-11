@@ -1,0 +1,34 @@
+<%- include('../Templates/header') %>
+  <section class="contenedor">
+    <h1>Horarios</h1>
+    <div class="btnagregarservicioizq">
+      <a href="agregarhorario"><button type="button" class="btn">Agregar hora de cita</button> </a>
+    </div>
+    <!--tabla bonita-->
+    <div>
+      <table class="tabla w100">
+        <thead class="thead">
+          <tr>
+            <th>Id Hora</th>
+            <th>Hora</th>
+            <th>Opciones</th>
+            
+          </tr>
+        </thead>
+        <tbody class="tbody">
+          <% horarios.forEach(horario => { %>
+            <tr>
+              <td><%=horario.id_horario%> </td>
+              <td><%=horario.hora%> </td>
+              <td><a href="/editarhorario/<%=horario.id_horario%>" class="btn">Editar</a> 
+                <a href="/eliminarhorario/<%=horario.id_horario %>" class="btnRed" >Eliminar</a></td>
+            </tr>
+           
+          <% }) %>
+          
+        </tbody>
+      </table>
+  </section>
+
+  </body>
+  </html>

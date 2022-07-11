@@ -12,7 +12,27 @@ router.post('/loginMed', crud.loginmedico)
 router.post('/loginAdmin', crud.loginadministrador)
 //LOGOUT
 router.get('/logout', crud.logout)
+//AGREGAR HORARIO
+router.post('/agregarhora',crud.agregarhorario)
 
+//EDITAR HORARIOS
+router.post('/editarhora',crud.editarhora)
+
+router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
+    const id_horario = req.params.id_horario;
+    conn.query('select * from horarios where id_horario=?', [id_horario], (error, horario) => {
+        if (error) throw error
+        res.render("adminpantallas/editarhorario", { horario: horario[0] });
+    })
+})
+// ELIMINAR HORARIO
+router.get('/eliminarhorario/:id_horario', crud.authadmin,(req, res) => {
+    const id_horario = req.params.id_horario;
+    conn.query('delete from horarios WHERE id_horario = ?', [id_horario], (error, results) => {
+        if (error) throw error
+        res.redirect('/horarios');
+    })
+})
 //LOGIN MEDICO
 router.get('/iniciarsesionmed',(req, res) => {
     res.render("adminpantallas/iniciosesionMedico", {});
@@ -169,8 +189,12 @@ router.get('/resutadodecita', (req, res) => {
     res.render("adminpantallas/resultadoCita", {});
 })
 
-router.get('/calendariocitas', crud.authadmin,(req, res) => {
-    res.render("adminpantallas/calendariodecitas", {});
+router.get('/horarios', crud.authadmin,(req, res) => {
+    conn.query('SELECT * FROM horarios',(error,horarios)=>{
+        if (error) throw error
+        res.render("adminpantallas/horarios", {horarios});
+
+    })
 })
 
 /*rutas medicos */

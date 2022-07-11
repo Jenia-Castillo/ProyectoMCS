@@ -271,6 +271,31 @@ exports.registrarpaciente = async (req, res) => {
 
 /* ----- FIN REGISTRO DE PACIENTES  ----------*/
 
+/*---INICIO REGISTRO DE HORARIO----*/
+exports.agregarhorario= (req,res)=> {
+    const hora = req.body.hora;
+    conn.query('insert into horarios set ?',{hora},(error,result)=>{
+    if (error) throw error
+    res.redirect('/horarios')
+    }) 
+}
+
+exports.editarhora = (req, res) => {
+
+    const hora = req.body.hora;
+    const id_horario= req.body.id_horario
+
+    conn.query('UPDATE horarios set ? where id_horario = ?', [{ hora  }, id_horario], (error, results) => {
+
+        if (error) throw error
+        res.redirect('/horarios')
+
+    })
+
+}
+/*---FIN REGISTRO DE HORARIO----*/
+
+
 //UPDATE
 exports.editar = (req, res) => {
 
@@ -284,4 +309,5 @@ exports.editar = (req, res) => {
         res.redirect('/servicios')
 
     })
+
 }
