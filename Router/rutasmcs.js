@@ -69,7 +69,7 @@ router.get('/servicios', crud.authadmin,(req, res) => {
 })
 
 //MOSTRAR CITAS
-router.get('/citasprogramadas', (req, res) => {
+router.get('/citasprogramadas', crud.auth,(req, res) => {
     conn.query('SELECT * FROM citas', (error, citas) => {
         if (error) throw error
         res.render("usuariopantallas/citasUsuario", { citas });
@@ -234,11 +234,11 @@ router.get('/agregaradmin', (req, res) => {
 fin rutas admin/admins */
 
 //RENDER USUARIO
-router.get('/citasprogramadas', (req, res) => {
+router.get('/citasprogramadas', crud.auth,(req, res) => {
     res.render("usuariopantallas/citasUsuario", {});
 })
 
-router.get('/crearcita', (req, res) => {
+router.get('/crearcita', crud.auth,(req, res) => {
     res.render("usuariopantallas/crearcita", {});
 })
 
@@ -256,7 +256,7 @@ router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
 })
 
-router.get('/historial', (req, res) => {
+router.get('/historial', crud.auth,(req, res) => {
     res.render("usuariopantallas/historial", {});
 })
 
