@@ -71,12 +71,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Volcando estructura para tabla mcs.horarios
 CREATE TABLE IF NOT EXISTS `horarios` (
   `id_horario` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `id_servicio` int(11) NOT NULL,
-  PRIMARY KEY (`id_horario`),
-  KEY `FK_horarios_servicios` (`id_servicio`) USING BTREE,
-  CONSTRAINT `FK_horarios_servicios` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id_servicio`)
+  PRIMARY KEY (`id_horario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.

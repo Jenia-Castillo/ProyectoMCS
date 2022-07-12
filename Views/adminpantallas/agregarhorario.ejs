@@ -2,34 +2,21 @@
   <section class="aggHorario contenedor">
     <h1>Agregar horario de cita</h1>
 
+    <form action="/agregarhora" method="post">
     <div class="agregarservicio">
-      <div class>
-        <input type="text" class="controls" id="" placeholder="nombre del servicio">
-      </div>
-      <input type="date" class="controls">
-    </div> 
+        <label for="hora">Ingrese la hora: </label>
+        <input type="time" class="controls" id="hora" name="hora" >
+        <div class="centrar">
+          
+            <input type="submit" class="btn" value="Guardar">
+        
+          <a href="horarios">
+            <button type="button" class="btnRed">Cancelar</button>
+          </a>
+        </div>
+      </form>
 
-    <div class>
-      <select class="controls">
-        <option disabled value="" selected>Seleccione la Hora</option>
-        <option value="">06:00 am</option>
-        <option value="">08:00 am</option>
-        <option value="">10:00 am</option>
-        <option value="">12:00 am</option>
-        <option value="">02:00 pm</option>
-        <option value="">04:00 pm</option>
-        <option value="">06:00 pm</option>
-      </select>
-    </div>
-
-    <div class="centrar">
-      <a href="calendariocitas">
-        <button type="button" class="btn" onclick="mensajesatisfactorio();">Guardar</button>
-      </a>
-      <a href="calendariocitas">
-        <button type="button" class="btnRed">Cancelar</button>
-      </a>
-    </div>
+   
   </section>
 
   </body>

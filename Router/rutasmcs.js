@@ -12,7 +12,27 @@ router.post('/loginMed', crud.loginmedico)
 router.post('/loginAdmin', crud.loginadministrador)
 //LOGOUT
 router.get('/logout', crud.logout)
+//AGREGAR HORARIO
+router.post('/agregarhora',crud.agregarhorario)
 
+//EDITAR HORARIOS
+router.post('/editarhora',crud.editarhora)
+
+router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
+    const id_horario = req.params.id_horario;
+    conn.query('select * from horarios where id_horario=?', [id_horario], (error, horario) => {
+        if (error) throw error
+        res.render("adminpantallas/editarhorario", { horario: horario[0] });
+    })
+})
+// ELIMINAR HORARIO
+router.get('/eliminarhorario/:id_horario', crud.authadmin,(req, res) => {
+    const id_horario = req.params.id_horario;
+    conn.query('delete from horarios WHERE id_horario = ?', [id_horario], (error, results) => {
+        if (error) throw error
+        res.redirect('/horarios');
+    })
+})
 //LOGIN MEDICO
 router.get('/iniciarsesionmed',(req, res) => {
     res.render("adminpantallas/iniciosesionMedico", {});
@@ -49,7 +69,7 @@ router.get('/servicios', crud.authadmin,(req, res) => {
 })
 
 //MOSTRAR CITAS
-router.get('/citasprogramadas', (req, res) => {
+router.get('/citasprogramadas', crud.auth,(req, res) => {
     conn.query('SELECT * FROM citas', (error, citas) => {
         if (error) throw error
         res.render("usuariopantallas/citasUsuario", { citas });
@@ -68,6 +88,14 @@ router.get('/agregarmedico', crud.authadmin,(req, res) => {
 router.get('/agregarservicio', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarservicio", {});
 })
+
+//AGREGAR PREGUNTAS FRECUENTES
+router.get('/agregarpreguntas', crud.authadmin,(req, res) => {
+      res.render("adminpantallas/agregarpreguntas", {});
+})
+//AGREGAR PREGUNTA
+router.post('/guardarpregunta',crud.guardarpregunta)
+
 //GUARDAR SERVICIO
 router.post('/guardar', crud.guardar)
 
@@ -153,7 +181,16 @@ router.post('/registrarpaciente', crud.registrarpaciente)
 router.get('/agregarhorario', crud.authadmin,(req, res) => {
     res.render("adminpantallas/agregarhorario", {});
 })
+//eliminar paceinte
+router.get('/eliminarpaciente/:id_paciente', crud.authadmin,(req, res) => {
+    const id_paciente = req.params.id_paciente;
+    conn.query('DELETE FROM pacientes WHERE id_paciente=?', [id_paciente], (error) => {
+        if (error) throw error
+        res.redirect('/busquedaUsuarios');
+    })
+})
 
+//mostrar pacientes
 router.get('/busquedausuarios', crud.authadmin,(req, res) => {
     conn.query("select * from pacientes", (error, pacientes) => {
         if (error) throw error
@@ -169,8 +206,12 @@ router.get('/resutadodecita', (req, res) => {
     res.render("adminpantallas/resultadoCita", {});
 })
 
-router.get('/calendariocitas', crud.authadmin,(req, res) => {
-    res.render("adminpantallas/calendariodecitas", {});
+router.get('/horarios', crud.authadmin,(req, res) => {
+    conn.query('SELECT * FROM horarios',(error,horarios)=>{
+        if (error) throw error
+        res.render("adminpantallas/horarios", {horarios});
+
+    })
 })
 
 /*rutas medicos */
@@ -193,11 +234,11 @@ router.get('/agregaradmin', (req, res) => {
 fin rutas admin/admins */
 
 //RENDER USUARIO
-router.get('/citasprogramadas', (req, res) => {
+router.get('/citasprogramadas', crud.auth,(req, res) => {
     res.render("usuariopantallas/citasUsuario", {});
 })
 
-router.get('/crearcita', (req, res) => {
+router.get('/crearcita', crud.auth,(req, res) => {
     res.render("usuariopantallas/crearcita", {});
 })
 
@@ -210,11 +251,12 @@ router.get('/editarcita/:seleccionada', (req, res) => {
     })
 })
 
+
 router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
 })
 
-router.get('/historial', (req, res) => {
+router.get('/historial', crud.auth,(req, res) => {
     res.render("usuariopantallas/historial", {});
 })
 
@@ -223,7 +265,10 @@ router.get('/nosotros', (req, res) => {
 })
 
 router.get('/preguntasfrecuentes', (req, res) => {
-    res.render("usuariopantallas/preguntasfrecuentes", {});
+    conn.query('SELECT * FROM preguntasfrecuentes', (error, pregunta) => {
+        if (error) throw error
+        res.render("usuariopantallas/preguntasfrecuentes", { pregunta });
+    })
 })
 
 router.get('/perfilusuario', crud.auth, (req, res) => {

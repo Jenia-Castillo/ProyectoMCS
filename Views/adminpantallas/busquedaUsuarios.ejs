@@ -3,13 +3,26 @@
     <section class="res contenedor">
         <h1>Pacientes</h1>
         <div class="resultados">
-            <% pacientes.forEach( paciente => { %>
-            
-                <div id="resultado">
-                    <p> <%= paciente.nombre %>, <%= paciente.apellido %> </p>
-                    <a href="#"><button class="btn">ver perfil</button></a>
-                </div>
-                <% }) %>
+            <table class="tabla w100">
+                <thead class="thead">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Modificar</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody">
+                  <% pacientes.forEach(paciente => { %>
+                    <tr>
+                    <td><%= paciente.nombre %></td>
+                    <td><%= paciente.apellido %></td>
+                    <td><a href="#" class="btn">Editar</a> 
+                      <a href="/eliminarpaciente/<%= paciente.id_paciente %>" class="btnRed">Eliminar</a></td>
+                  </tr>
+                  <% }); %> 
+                </tbody>
+              </table>
+               
         </div>
     </section>
 
