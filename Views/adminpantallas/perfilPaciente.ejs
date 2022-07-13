@@ -49,6 +49,11 @@
             <td><%= paciente.direccion%></td>
 
           </tr>
+          <tr>
+            <td>Nacimiento</td>
+            <td><%= moment(paciente.fechadenacimiento).format('DD/MM/YYYY')%></td>
+
+          </tr>
         </tbody>
       </table>
 

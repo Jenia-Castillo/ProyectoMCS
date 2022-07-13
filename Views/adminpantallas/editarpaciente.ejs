@@ -13,6 +13,9 @@
       </select>
       <input type="text" class="controls" name="cedula" value="<%=paciente.cedula%>">
       <input type="tel" class="controls" name="telefono" value="<%=paciente.telefono%>">
+      <p class="letraGrande">Año / Mes / Día</p>
+      <input type="text" class="controls" name="fechadenacimiento" 
+      value="<%=moment(paciente.fechadenacimiento).format('YYYY/MM/DD')%>">
       <input type="text" class="controls" name="direccion" value="<%=paciente.direccion%>">
       <div class="centrar">
 

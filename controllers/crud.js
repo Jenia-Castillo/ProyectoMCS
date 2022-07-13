@@ -314,9 +314,10 @@ exports.editarpaciente = (req, res) => {
     const telefono = req.body.telefono;
     const sexo = req.body.sexo;
     const correo = req.body.correo;
+    const fechadenacimiento = req.body.fechadenacimiento;
 
     conn.query('UPDATE pacientes set ? where id_paciente = ?', [{ nombre, apellido, cedula,
-     direccion, telefono, sexo, correo}, id_paciente], (error, results) => {
+     direccion, telefono, sexo, correo, fechadenacimiento}, id_paciente], (error, results) => {
 
         if (error) throw error
         res.redirect('/pacientes')

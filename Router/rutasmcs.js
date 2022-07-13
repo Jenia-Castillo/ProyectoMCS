@@ -38,7 +38,8 @@ router.get('/editarpaciente/:id_paciente', crud.authadmin,(req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
         if (error) throw error
-        res.render("adminpantallas/editarpaciente", { paciente: paciente[0]});
+        const moment = require('moment');
+        res.render("adminpantallas/editarpaciente", { paciente: paciente[0], moment});
     })
 })
 //Perfil paciente
@@ -47,7 +48,8 @@ router.get('/perfilpaciente/:id_paciente', crud.authadmin,(req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
         if (error) throw error
-        res.render("adminpantallas/perfilPaciente", { paciente: paciente[0]});
+        const moment = require('moment');
+        res.render("adminpantallas/perfilPaciente", { paciente: paciente[0], moment});
     })
 })
 
