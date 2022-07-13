@@ -32,7 +32,7 @@ router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
 })
 
 //EDITAR PACIENTE
-/router.post('/editarpaciente',crud.editarpaciente)//el editar no funciona
+router.post('/editarpaciente',crud.editarpaciente)
 
 router.get('/editarpaciente/:id_paciente', crud.authadmin,(req, res) => {
     const id_paciente = req.params.id_paciente;

@@ -1,13 +1,19 @@
 <%- include('../Templates/header') %>
 <section class="aggHorario contenedor">
   <h1>Editar paciente</h1>
-  <form action="/#" method="post">
+  <form action="/editarpaciente" method="post">
     <div class="agregarservicio">
-      <input name="id_paciente" class="controls" value="<%=paciente.id_paciente%>">
-      <input type="text" class="controls" id="correo" name="hora" value="<%=paciente.correo%>">
-      <input type="text" class="controls" id="nombre" name="hora" value="<%=paciente.nombre %>">
-      <input type="text" class="controls" id="apellido" name="hora" value="<%=paciente.apellido%>">
-      
+      <input name="id_paciente" class="controls" value="<%=paciente.id_paciente%>" readonly>
+      <input type="email" class="controls" name="correo" value="<%=paciente.correo%>">
+      <input type="text" class="controls" name="nombre" value="<%=paciente.nombre %>">
+      <input type="text" class="controls" name="apellido" value="<%=paciente.apellido %>">
+      <select name="sexo" id="" class="controls">
+        <option <%= paciente.sexo == 'Masculino' ? "selected " : "" %>value='Masculino'>Masculino</option>
+        <option <%= paciente.sexo == 'Femenino' ? "selected " : "" %>value='Femenino'>Femenino</option>
+      </select>
+      <input type="text" class="controls" name="cedula" value="<%=paciente.cedula%>">
+      <input type="tel" class="controls" name="telefono" value="<%=paciente.telefono%>">
+      <input type="text" class="controls" name="direccion" value="<%=paciente.direccion%>">
       <div class="centrar">
 
         <input type="submit" class="btn" value="Guardar">

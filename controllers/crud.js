@@ -5,7 +5,7 @@ const router = require('../Router/rutasmcs');
 //DEFINIMOS BCRYPT
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {promisify}= require('util');
+const { promisify } = require('util');
 const { default: axios } = require('axios');
 
 //LOGIN MEDICO
@@ -31,16 +31,16 @@ exports.loginmedico = async (req, res) => {
                 })
 
             } else {
-                
+
                 const id = result[0].id_medico;
-                
-                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
+
+                const token = jwt.sign({ id: id }, process.env.JWT_SECRETO, {
                     expiresIn: process.env.JWT_TIEMPO_EXPIRA
                 })
-                
+
 
                 const cookieOptions = {
-                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
+                    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
                     httpOnly: true
                 }
 
@@ -51,12 +51,12 @@ exports.loginmedico = async (req, res) => {
     }
 }
 
-exports.authmedico = async (req, res, next)=>{
-    if(req.cookies.jwt){
+exports.authmedico = async (req, res, next) => {
+    if (req.cookies.jwt) {
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conn.query('select * from medicos where id_medico = ?', [decod.id],(error, result)=>{
-                if(!result){return next()}
+            conn.query('select * from medicos where id_medico = ?', [decod.id], (error, result) => {
+                if (!result) { return next() }
                 req.medico = result[0]
                 return next();
             })
@@ -64,7 +64,7 @@ exports.authmedico = async (req, res, next)=>{
             console.log(error)
             return next()
         }
-    }else{
+    } else {
         res.redirect('/iniciarsesionmed')
     }
 }
@@ -94,16 +94,16 @@ exports.loginadministrador = async (req, res) => {
                 })
 
             } else {
-                
+
                 const id = result[0].id_admin;
-                
-                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
+
+                const token = jwt.sign({ id: id }, process.env.JWT_SECRETO, {
                     expiresIn: process.env.JWT_TIEMPO_EXPIRA
                 })
-                
+
 
                 const cookieOptions = {
-                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
+                    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
                     httpOnly: true
                 }
 
@@ -114,12 +114,12 @@ exports.loginadministrador = async (req, res) => {
     }
 }
 
-exports.authadmin = async (req, res, next)=>{
-    if(req.cookies.jwt){
+exports.authadmin = async (req, res, next) => {
+    if (req.cookies.jwt) {
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conn.query('select * from admin where id_admin = ?', [decod.id],(error, result)=>{
-                if(!result){return next()}
+            conn.query('select * from admin where id_admin = ?', [decod.id], (error, result) => {
+                if (!result) { return next() }
                 req.admin = result[0]
                 return next();
             })
@@ -127,7 +127,7 @@ exports.authadmin = async (req, res, next)=>{
             console.log(error)
             return next()
         }
-    }else{
+    } else {
         res.redirect('/iniciarsesionadmin')
     }
 }
@@ -158,16 +158,16 @@ exports.login = async (req, res) => {
                 })
 
             } else {
-                
+
                 const id = result[0].id_paciente;
-                
-                const token = jwt.sign({id:id}, process.env.JWT_SECRETO, {
+
+                const token = jwt.sign({ id: id }, process.env.JWT_SECRETO, {
                     expiresIn: process.env.JWT_TIEMPO_EXPIRA
                 })
-                
+
 
                 const cookieOptions = {
-                    expires: new Date(Date.now()+process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
+                    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRA * 24 * 60 * 60 * 1000),
                     httpOnly: true
                 }
 
@@ -178,12 +178,12 @@ exports.login = async (req, res) => {
     }
 }
 
-exports.auth = async (req, res, next)=>{
-    if(req.cookies.jwt){
+exports.auth = async (req, res, next) => {
+    if (req.cookies.jwt) {
         try {
             const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-            conn.query('select * from pacientes where id_paciente = ?', [decod.id],(error, result)=>{
-                if(!result){return next()}
+            conn.query('select * from pacientes where id_paciente = ?', [decod.id], (error, result) => {
+                if (!result) { return next() }
                 req.paciente = result[0]
                 return next();
             })
@@ -191,13 +191,13 @@ exports.auth = async (req, res, next)=>{
             console.log(error)
             return next()
         }
-    }else{
+    } else {
         res.redirect('/iniciarsesion')
     }
 }
 
 //LOGOUT
-exports.logout = (req, res)=>{
+exports.logout = (req, res) => {
     res.clearCookie('jwt')
     return res.redirect('/')
 }
@@ -224,9 +224,9 @@ exports.guardarCita = async (req, res) => {
     const id_medico = 1;
     const id_horario = 1;
     try {
-        conn.query('select precio from servicios where id_servicio = ?', id_servicio,(error, result)=>{
+        conn.query('select precio from servicios where id_servicio = ?', id_servicio, (error, result) => {
             if (error) throw error;
-            costo=result[0].precio;
+            costo = result[0].precio;
             conn.query('insert into citas set ?', { costo, hora, fecha, id_servicio, id_paciente, id_medico, id_horario }, (error, results) => {
                 if (error) throw error
                 res.redirect('/citasprogramadas');
@@ -248,7 +248,7 @@ exports.guardarpregunta = (req, res) => {
     })
 }
 //agregar medico 
-exports.agregarmedico = async(req, res) => {
+exports.agregarmedico = async (req, res) => {
 
     const correo = req.body.correo;
     const contrasena = req.body.contrasena;
@@ -258,7 +258,7 @@ exports.agregarmedico = async(req, res) => {
     const cedula = req.body.cedula;
     const id_servicio = req.body.id_servicio;
 
-    conn.query('insert into medicos set ?', { correo, contrasena:constrasenaHash, nombre, apellido, cedula, id_servicio }, (error, results) => {
+    conn.query('insert into medicos set ?', { correo, contrasena: constrasenaHash, nombre, apellido, cedula, id_servicio }, (error, results) => {
         if (error) throw error
         res.redirect('/medicos')
     })
@@ -297,24 +297,29 @@ exports.registrarpaciente = async (req, res) => {
             alertIcon: 'success',
             showConfirmButton: true,
             timer: false,
-            ruta: ''
+            ruta: 'iniciarsesion'
         });
 
     })
 
 }
 exports.editarpaciente = (req, res) => {
-//nombre,apellido,cedula,correo
-//const nombre=req
-const nombre=req.body.nombre;
 
-    const hora = req.body.hora;
-    const id_horario= req.body.id_horario
+    const id_paciente = req.body.id_paciente;
 
-    conn.query('UPDATE horarios set ? where id_horario = ?', [{ hora  }, id_horario], (error, results) => {
+    const nombre = req.body.nombre;
+    const apellido = req.body.apellido;
+    const cedula = req.body.cedula;
+    const direccion = req.body.direccion;
+    const telefono = req.body.telefono;
+    const sexo = req.body.sexo;
+    const correo = req.body.correo;
+
+    conn.query('UPDATE pacientes set ? where id_paciente = ?', [{ nombre, apellido, cedula,
+     direccion, telefono, sexo, correo}, id_paciente], (error, results) => {
 
         if (error) throw error
-        res.redirect('/horarios')
+        res.redirect('/pacientes')
 
     })
 
@@ -323,20 +328,20 @@ const nombre=req.body.nombre;
 /* ----- FIN REGISTRO DE PACIENTES  ----------*/
 
 /*---INICIO REGISTRO DE HORARIO----*/
-exports.agregarhorario= (req,res)=> {
+exports.agregarhorario = (req, res) => {
     const hora = req.body.hora;
-    conn.query('insert into horarios set ?',{hora},(error,result)=>{
-    if (error) throw error
-    res.redirect('/horarios')
-    }) 
+    conn.query('insert into horarios set ?', { hora }, (error, result) => {
+        if (error) throw error
+        res.redirect('/horarios')
+    })
 }
 
 exports.editarhora = (req, res) => {
 
     const hora = req.body.hora;
-    const id_horario= req.body.id_horario
+    const id_horario = req.body.id_horario
 
-    conn.query('UPDATE horarios set ? where id_horario = ?', [{ hora  }, id_horario], (error, results) => {
+    conn.query('UPDATE horarios set ? where id_horario = ?', [{ hora }, id_horario], (error, results) => {
 
         if (error) throw error
         res.redirect('/horarios')
