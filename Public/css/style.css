@@ -146,6 +146,7 @@ header{
     background-color: var(--color-celesteClaro);
     color: var(--color-blanco);
     border-radius: 2rem;
+    text-align: center;
     padding: .7rem 3rem;
     font-size: 1.5rem;
     border: none;
@@ -163,6 +164,7 @@ header{
     background-color: var(--rojo-cerrar);
     color: var(--color-blanco);
     border-radius: 2rem;
+    text-align: center;
     padding: .7rem 3rem;
     font-size: 1.5rem;
     border: none;
@@ -180,6 +182,7 @@ header{
     background-color: var(--color-verde-paga);
     color: var(--color-blanco);
     border-radius: 2rem;
+    text-align: center;
     padding: .7rem 3rem;
     font-size: 1.5rem;
     border: none;
@@ -312,8 +315,8 @@ header{
 }
 
 .botones{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
