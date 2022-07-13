@@ -99,7 +99,8 @@ router.get('/citasprogramadas', async (req, res) => {
     const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
     conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha, citas.estado as estado, servicios.servicio as id_servicio FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_paciente = ?', [decod.id], (error, citas) => {
         if (error) throw error
-        res.render("usuariopantallas/citasUsuario", { citas });
+        const moment = require('moment');
+        res.render("usuariopantallas/citasUsuario", { citas, moment });
     })
 })
 
@@ -107,7 +108,7 @@ router.get('/citasprogramadas', async (req, res) => {
 router.get('/crearcita',(req, res) => {
     conn.query('SELECT * FROM servicios', (error, servicios) => {
         if (error) throw error
-        res.render("usuariopantallas/crearcita", { servicios });
+        res.render("usuariopantallas/crearcita", { servicios});
     })
 })
 //Select dinamico en crearCita
