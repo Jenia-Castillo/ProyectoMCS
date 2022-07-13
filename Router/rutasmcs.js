@@ -25,6 +25,27 @@ router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
         res.render("adminpantallas/editarhorario", { horario: horario[0] });
     })
 })
+
+//EDITAR PACIENTE
+/router.post('/editarpaciente',crud.editarpaciente)//el editar no funciona
+
+router.get('/editarpaciente/:id_paciente', crud.authadmin,(req, res) => {
+    const id_paciente = req.params.id_paciente;
+    conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
+        if (error) throw error
+        res.render("adminpantallas/editarpaciente", { paciente: paciente[0]});
+    })
+})
+//Perfil paciente
+
+router.get('/perfilpaciente/:id_paciente', crud.authadmin,(req, res) => {
+    const id_paciente = req.params.id_paciente;
+    conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
+        if (error) throw error
+        res.render("adminpantallas/perfilPaciente", { paciente: paciente[0]});
+    })
+})
+
 // ELIMINAR HORARIO
 router.get('/eliminarhorario/:id_horario', crud.authadmin,(req, res) => {
     const id_horario = req.params.id_horario;
@@ -76,7 +97,7 @@ router.get('/citasprogramadas', crud.auth,(req, res) => {
     })
 })
 
-//MOSTRAR SERVICIOS servicio probando
+//MOSTRAR SERVICIOS 
 router.get('/agregarmedico', crud.authadmin,(req, res) => {
     conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
         if (error) throw error

@@ -1,0 +1,26 @@
+<%- include('../Templates/header') %>
+<section class="aggHorario contenedor">
+  <h1>Editar paciente</h1>
+  <form action="/#" method="post">
+    <div class="agregarservicio">
+      <input name="id_paciente" class="controls" value="<%=paciente.id_paciente%>">
+      <input type="text" class="controls" id="correo" name="hora" value="<%=paciente.correo%>">
+      <input type="text" class="controls" id="nombre" name="hora" value="<%=paciente.nombre %>">
+      <input type="text" class="controls" id="apellido" name="hora" value="<%=paciente.apellido%>">
+      
+      <div class="centrar">
+
+        <input type="submit" class="btn" value="Guardar">
+
+        <a href="/pacientes">
+          <button type="button" class="btnRed">Cancelar</button>
+        </a>
+      </div>
+  </form>
+</section>
+
+</body>
+
+</html>
+
+  

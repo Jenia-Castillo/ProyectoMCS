@@ -1,32 +1,34 @@
 <%- include('../Templates/header') %>
 
     <section class="res contenedor">
-        <h1>Pacientes</h1>
-        <div class="resultados">
-            <table class="tabla w100">
-                <thead class="thead">
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Modificar</th>
-                  </tr>
-                </thead>
-                <tbody class="tbody">
-                  <% pacientes.forEach(paciente => { %>
-                    <tr>
-                    <td><%= paciente.nombre %></td>
-                    <td><%= paciente.apellido %></td>
-                    <td><a href="#" class="btn">Editar</a> 
-                      <a href="/eliminarpaciente/<%= paciente.id_paciente %>" class="btnRed">Eliminar</a></td>
-                  </tr>
-                  <% }); %> 
-                </tbody>
-              </table>
-               
-        </div>
-    </section>
+  <h1>Pacientes</h1>
+  <div class="resultados">
+    <table class="tabla w100">
+      <thead class="thead">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Modificar</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <% pacientes.forEach(paciente => { %>
+        <tr>
+          <td><%= paciente.nombre %></td>
+          <td><%= paciente.apellido %></td>
+          <td><a href="/perfilpaciente/<%= paciente.id_paciente %>" class="btn">Ver perfil</a>
+          <a href="/editarpaciente/<%= paciente.id_paciente %>" class="btn">Editar</a>
+            <a href="/eliminarpaciente/<%= paciente.id_paciente %>" class="btnRed">Eliminar</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
 
-    </body>
-    <script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+  </div>
+</section>
 
-    </html>
+</body>
+<script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+
+</html>

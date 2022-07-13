@@ -278,6 +278,22 @@ exports.registrarpaciente = async (req, res) => {
     })
 
 }
+exports.editarpaciente = (req, res) => {
+//nombre,apellido,cedula,correo
+//const nombre=req
+const nombre=req.body.nombre;
+
+    const hora = req.body.hora;
+    const id_horario= req.body.id_horario
+
+    conn.query('UPDATE horarios set ? where id_horario = ?', [{ hora  }, id_horario], (error, results) => {
+
+        if (error) throw error
+        res.redirect('/horarios')
+
+    })
+
+}
 
 /* ----- FIN REGISTRO DE PACIENTES  ----------*/
 

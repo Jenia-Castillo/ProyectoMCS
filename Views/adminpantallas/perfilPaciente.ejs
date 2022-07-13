@@ -1,0 +1,62 @@
+<%- include('../Templates/header') %>
+
+<section class="contenedor">
+  <h1>Paciente: <%= paciente.nombre %> <%= paciente.apellido %></h1>
+  <section class="res contenedor">
+    <div class="resultados">
+      <table class="tabla w100">
+
+        <tbody class="tbody">
+
+          <tr>
+            <td>Nombre</td>
+            <td><%= paciente.nombre%> </td>
+
+          </tr>
+
+          <tr>
+            <td>Apellido</td>
+            <td><%= paciente.apellido %></td>
+
+          </tr>
+          <tr>
+            <td>Correo</td>
+            <td><%= paciente.correo%></td>
+
+          </tr>
+          <tr>
+            <td>Cédula</td>
+            <td><%= paciente.cedula%></td>
+
+          </tr>
+          <!-- <tr>
+            <td>Fecha de nacimiento</td>
+            <td><//%= paciente.fechadenacimiento%></td>
+         
+          </tr>-->
+          <tr>
+            <td>Sexo</td>
+            <td><%= paciente.sexo%></td>
+
+          </tr>
+          <tr>
+            <td>Teléfono</td>
+            <td><%= paciente.telefono%></td>
+
+          </tr>
+          <tr>
+            <td>Dirección</td>
+            <td><%= paciente.direccion%></td>
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </section>
+
+
+  </body>
+  <script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+
+  </html>
