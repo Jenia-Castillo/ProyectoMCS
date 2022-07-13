@@ -10,6 +10,8 @@
     --fuente-principal: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --color-blanco: #ffff;
     --color-gris-secundario: rgb(233, 231, 231);
+    --color-verde-paga: rgb(35, 150, 45);
+    --color-verde-paga-hover: rgb(11, 107, 19);
 
 }
 
@@ -170,6 +172,23 @@ header{
 .btnRed:hover{
 
     background-color: var(--rojo-hover);
+    
+}
+
+.btnVerde{
+
+    background-color: var(--color-verde-paga);
+    color: var(--color-blanco);
+    border-radius: 2rem;
+    padding: .7rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btnVerde:hover{
+
+    background-color: var(--color-verde-paga-hover);
     
 }
 

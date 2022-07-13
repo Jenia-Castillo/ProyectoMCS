@@ -1,0 +1,3 @@
+export const PAYPAL_API_CLIENT = 'AYj6RZiC_2QK5QxILYKCCR1o2oPHLuQ3yFWXETMbH1EcpgYW8jhGZkFO1zjQ9b4mqaGMb1405DcAxXrT'
+export const PAYPAL_API_SECRET = 'EFYg3OL7aKOVCNYYGB_gLwt9V0VaPkuO1_u65ie4LB74VvaD7OA28AViIUHoiZeIIh0v34s3VMySb18S'
+export const PAYPAL_API = 'https://api-m.sandbox.paypal.com'

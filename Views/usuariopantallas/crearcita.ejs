@@ -2,45 +2,36 @@
 
   <section class="contenedor">
     <h1>Realice su cita</h1>
-    <form action="" method="post" role="" class="agregarservicio">
+    <form action="/guardarCita" method="post" role="" class="agregarservicio">
       <div>
         <div class="col-md-3 form-group mt-3">
-          <input type="date" class="controls">
+          <input type="date" class="controls" name="fecha">
         </div>
         <div>
-          <select class="controls">
+          <select class="controls" name="hora">
             <option selected disabled>Seleccione la Hora</option>
-            <option value="">06:00 am</option>
-            <option value="">08:00 am</option>
-            <option value="">10:00 am</option>
-            <option value="">12:00 am</option>
-            <option value="">02:00 pm</option>
-            <option value="">04:00 pm</option>
-            <option value="">06:00 pm</option>
+            <option value="06:00">06:00 am</option>
+            <option value="08:00">08:00 am</option>
+            <option value="10:00">10:00 am</option>
+            <option value="12:00">12:00 am</option>
+            <option value="02:00">02:00 pm</option>
+            <option value="04:00">04:00 pm</option>
+            <option value="06:00">06:00 pm</option>
           </select>
         </div>
         <div>
-          <select class="controls">
-            <option selected disabled>Seleccione Servicio</option>
-            <option value="Consulta">Consulta General</option>
-            <option value="Odontología">Odontología</option>
-            <option value="Pediatría">Pediatría</option>
-            <option value="Ginecología">Ginecología</option>
-            <option value="Oftanmología">Oftanmología</option>
+          <select class="controls" id="servicio" name = "servicio" onchange="prueba()">
+            <option disabled selected>Seleccione Servicio</option>
+            <% servicios.forEach(servicio=> { %>
+            <option value=<%= servicio.id_servicio %>>
+            <%= servicio.servicio %></option><% }); %>
           </select>
         </div>
-        <div>
-          <select class="controls">
-            <option selected disabled>Seleccione Doctor</option>
-            <option value="Odontología">Raúl Álvarez</option>
-            <option value="Pediatría">Sterben Mancolle</option>
-            <option value="Ginecología">Jolyne Cujoh</option>
-          </select>
-        </div>
+        
       </div>
 
       <div class="text-center">
-        <button type="button" onclick="validar()" class="btn w100">Realizar Cita</button>
+        <button type="submit" onclick="validar()" class="btn w100">Realizar Cita</button>
       </div>
     </form>
   </section>

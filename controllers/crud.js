@@ -1,9 +1,12 @@
+
+
 const conn = require('../database/database');
 const router = require('../Router/rutasmcs');
 //DEFINIMOS BCRYPT
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const {promisify}= require('util')
+const {promisify}= require('util');
+const { default: axios } = require('axios');
 
 //LOGIN MEDICO
 exports.loginmedico = async (req, res) => {
@@ -210,6 +213,28 @@ exports.guardar = (req, res) => {
         if (error) throw error
         res.redirect('/servicios');
     })
+}
+//INSERT cita
+exports.guardarCita = async (req, res) => {
+    const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO);
+    const hora = req.body.hora;
+    const fecha = req.body.fecha;
+    const id_servicio = req.body.servicio;
+    const id_paciente = [decod.id];
+    const id_medico = 1;
+    const id_horario = 1;
+    try {
+        conn.query('select precio from servicios where id_servicio = ?', id_servicio,(error, result)=>{
+            if (error) throw error;
+            costo=result[0].precio;
+            conn.query('insert into citas set ?', { costo, hora, fecha, id_servicio, id_paciente, id_medico, id_horario }, (error, results) => {
+                if (error) throw error
+                res.redirect('/citasprogramadas');
+            })
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 //Guardar pregunta

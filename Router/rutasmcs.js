@@ -1,8 +1,13 @@
+
+
 const express = require('express');
 const router = express.Router();
 
 const conn = require('../database/database')
 const crud = require('../controllers/crud')
+const {promisify}= require('util');
+const jwt = require('jsonwebtoken');
+const pay = require('../controllers/payment.controller')
 
 //INICIO SESION USUARIO
 router.post('/login', crud.login)
@@ -89,15 +94,42 @@ router.get('/servicios', crud.authadmin,(req, res) => {
     })
 })
 
-//MOSTRAR CITAS
-router.get('/citasprogramadas', crud.auth,(req, res) => {
-    conn.query('SELECT * FROM citas', (error, citas) => {
+//MOSTRAR CITAS //CAMBIAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO CUANDO SEPA COMO FUNCA LOGIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN
+router.get('/citasprogramadas', async (req, res) => {
+    const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+    conn.query('SELECT * FROM citas where id_paciente = ?', [decod.id], (error, citas) => {
         if (error) throw error
         res.render("usuariopantallas/citasUsuario", { citas });
     })
 })
 
-//MOSTRAR SERVICIOS 
+//MOSTRAR SERVICIOS servicio probando
+router.get('/crearcita',(req, res) => {
+    conn.query('SELECT * FROM servicios', (error, servicios) => {
+        if (error) throw error
+        res.render("usuariopantallas/crearcita", { servicios });
+    })
+})
+//Select dinamico en crearCita
+/*router.get('/getselectCita',(req, res, next) => {
+    console.log("hola");
+    var type = req.query.type;
+    var search_query = req.query.parent_value;
+    console.log("hola");
+
+    if(type == 'load_doctor'){
+        var query = `select * FROM medicos where id_servicio ='${search_query}' ORDER BY medicos ASC`
+    }
+    conn.query(query,function(err,data){
+        var data_arr=[];
+        data.foreach(function(row){
+            data_arr.push(row.Data);
+        });
+        res.json(data_arr);
+    });
+})*/
+
+//MOSTRAR SERVICIOS servicio probando
 router.get('/agregarmedico', crud.authadmin,(req, res) => {
     conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
         if (error) throw error
@@ -305,5 +337,22 @@ router.get('/registrar', (req, res) => {
     res.render("usuariopantallas/registrar", {});
 })
 
+//GUARDAR Cita
+/*router.get('/guardarCita', (req, res) => {
+    res.render("usuariopantallas/crearcita", {});
+})*/
+
+router.post('/guardarCita', crud.guardarCita)
+//router.post('/guardarCita', crud.guardarCita)
+
+//Cosas de Paypal
+//Ir ventana de pago
+router.get('/crearorden/:costo', pay.crearOrden)
+
+//Pago
+router.get('/capturaorden', pay.capturaOrden)
+
+//Cancelo o paso algo que no se hizo el pago
+router.get('/cancelaorden', pay.cancelaOrden)
 
 module.exports = router;
