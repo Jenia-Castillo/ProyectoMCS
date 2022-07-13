@@ -16,7 +16,7 @@
       <p class="letraGrande">Año / Mes / Día</p>
       <input type="text" class="controls" name="fechadenacimiento" 
       value="<%=moment(paciente.fechadenacimiento).format('YYYY/MM/DD')%>">
-      <input type="text" class="controls" name="direccion" value="<%=paciente.direccion%>">
+      <input type="text" class="controls" name="direccion" value="<%=paciente.direccion%>" required>
       <div class="centrar">
 
         <input type="submit" class="btn" value="Guardar">
