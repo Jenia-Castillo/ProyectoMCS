@@ -50,18 +50,20 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `sexo` varchar(50) NOT NULL,
   `telefono` varchar(50) NOT NULL,
   `direccion` text NOT NULL,
-  PRIMARY KEY (`id_paciente`) USING BTREE
+  PRIMARY KEY (`id_paciente`) USING BTREE,
+  UNIQUE INDEX `correo` (`correo`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla mcs.admin
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(50) NOT NULL,
-  `contrasena` varchar(100) NOT NULL,
-  	`nombre` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`id_admin` INT(11) NOT NULL AUTO_INCREMENT,
+	`correo` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`contrasena` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
+	`nombre` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
 	`apellido` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
-  PRIMARY KEY (`id_admin`)
+	PRIMARY KEY (`id_admin`) USING BTREE,
+	UNIQUE INDEX `correo` (`correo`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- La exportación de datos fue deseleccionada.
@@ -86,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `medicos` (
   `nombre` varchar(50) NOT NULL DEFAULT '',
   `apellido` varchar(50) NOT NULL DEFAULT '',
   `id_servicio` int(11) NOT NULL,
-  PRIMARY KEY (`id_medico`),
+ 	PRIMARY KEY (`id_medico`) USING BTREE,
+	UNIQUE INDEX `correo` (`correo`) USING BTREE,
   KEY `FK_medicos_servicios` (`id_servicio`),
   CONSTRAINT `FK_medicos_servicios` FOREIGN KEY (`id_servicio`) REFERENCES `servicios` (`id_servicio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
