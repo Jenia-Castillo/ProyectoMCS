@@ -186,15 +186,15 @@ router.get('/eliminarpaciente/:id_paciente', crud.authadmin,(req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('DELETE FROM pacientes WHERE id_paciente=?', [id_paciente], (error) => {
         if (error) throw error
-        res.redirect('/busquedaUsuarios');
+        res.redirect('/pacientes');
     })
 })
 
 //mostrar pacientes
-router.get('/busquedausuarios', crud.authadmin,(req, res) => {
+router.get('/pacientes', crud.authadmin,(req, res) => {
     conn.query("select * from pacientes", (error, pacientes) => {
         if (error) throw error
-        res.render("adminpantallas/busquedausuarios", { pacientes });
+        res.render("adminpantallas/pacientes", { pacientes });
     });
 })
 
