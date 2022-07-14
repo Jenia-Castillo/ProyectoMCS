@@ -8,7 +8,11 @@ const PAYPAL_API = 'https://api-m.sandbox.paypal.com'
 exports.crearOrden = async (req, res) =>{
     //
     try {
-        const costo = req.params.costo;
+        divisiones = req.params.costo.split("-")
+        
+        res.cookie('citaPagar',divisiones[1])
+        
+        const costo = divisiones[0];
         const order = {
           intent: "CAPTURE",
           purchase_units: [
@@ -24,7 +28,7 @@ exports.crearOrden = async (req, res) =>{
             landing_page: "NO_PREFERENCE",
             user_action: "PAY_NOW",
             return_url: "http://localhost:3000/citasprogramadas",
-            cancel_url: "http://localhost:3000/crearcita",
+            cancel_url: "http://localhost:3000/cancelaorden",
           },
         };
     //
@@ -77,10 +81,14 @@ exports.crearOrden = async (req, res) =>{
 
 //
 exports.capturaOrden = (req, res) =>{
-    res.send('captura orden')
+    //res.clearCookie('citaPagar')
+    res.redirect('/citasprogramadas/');
 }
 
 //
-exports.cancelaOrden = (req, res) =>{
-    res.send('cancela orden')
+exports.cancelaOrden = (req, res) =>{  //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH VEER TEMA COOKIEEEEE
+  const cookies = res.cookies;
+    console.log(cookies)
+    res.clearCookie('citaPagar')
+    res.redirect('/citasprogramadas');
 }
