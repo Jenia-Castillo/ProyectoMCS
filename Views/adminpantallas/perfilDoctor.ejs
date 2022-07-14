@@ -1,1 +1,18 @@
 <%- include('../Templates/header') %>
+    <section class="resultado contenedor">
+        <% if(medico){ %>
+            <h1>Bienvenido, <%= medico.nombre %>
+                    <%= medico.apellido %>
+            </h1>
+            <% } %>
+
+        <section class="nuestros-servicios contenedor">
+            <div class="servicios">
+                <div class="servicio">
+                    <img src="../img/admin.jpeg" alt="img-servicio">
+                    <div class="servicio-info">
+                        <h3>Ver Citas</h3>
+                        <a href="/citasdoctor"><button class="btn w100">Iniciar</button></a>
+                    </div>
+                </div>
+        </section>

@@ -1,0 +1,39 @@
+<%- include('../Templates/header') %>
+    <section class="citas-prog contenedor">
+        <div class="inicio-cita">
+            <h2>Citas Programadas</h2>
+        </div>
+        <div class="citas">
+            <% let num=1; citas.forEach(citas=> {
+                %>
+                <div class="cita">
+                    <h3>Cita <%= num %>
+                    </h3>
+                    <p>
+                        Fecha: <span>
+                            <%= moment(citas.fecha).format('DD/MM/YYYY') %>
+                        </span>
+                    </p>
+                    <p>
+                        Hora: <span>
+                            <%= citas.hora %>
+                        </span>
+                    </p>
+                    <p>
+                        Paciente: <span>
+                            <%= citas.id_paciente %>
+                        </span>
+                    </p>
+                    <p>
+                        Precio: <span>
+                            <%= citas.costo %>$
+                        </span>
+                    </p>
+                    <div class="busqueda-paciente">
+                        <a href="/redactar/<%= citas.id_paciente %>"class="btnVerde w100">Redactar Resultado</a>
+                    </div>
+                </div>
+                <% num++; %>
+                    <% }); %>
+        </div>
+    </section>

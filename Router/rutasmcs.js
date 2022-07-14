@@ -332,6 +332,33 @@ router.get('/perfilusuario', crud.auth, (req, res) => {
     res.render('usuariopantallas/usuarioperfil', {paciente:req.paciente})
 })
 
+router.get('/iniciodoctor', crud.authmedico, async (req, res) => {
+    
+    res.render("adminpantallas/perfilDoctor", {medico:req.medico });
+
+})
+
+router.get('/citasdoctor', crud.authmedico, async (req, res) => {
+    const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_medico = ?', [decod.id], (error, citas) => {
+        if (error) throw error
+        const moment = require('moment');
+        res.render("adminpantallas/citasDoctor", { citas, moment});
+    })
+})
+
+router.get('/redactar/:id_paciente', crud.authmedico, async (req, res) => {
+    const id_paciente = req.params.id_paciente;
+    const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
+    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_paciente = ?',[id_paciente], (error, citas) => {
+        if (error) throw error
+        res.render('adminpantallas/redactarResultado', {citas:citas[0]})
+    })
+})
+
+router.post('/agregarresultado', crud.agregarresult)
+
+
 router.get('/iniciarsesion', (req, res) => {
     res.render('usuariopantallas/iniciarsesion', {})
 })

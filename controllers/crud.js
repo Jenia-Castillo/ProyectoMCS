@@ -264,7 +264,19 @@ exports.agregarmedico = async (req, res) => {
     })
 
 }
+exports.agregarresult = async (req, res) => {
 
+    const id_cita = req.body.id_cita;
+    const id_paciente = req.body.id_paciente;
+    const id_medico = req.body.id_medico;
+    const descripcion = req.body.descripcion
+
+    conn.query('insert into resultados set ?', { descripcion, id_cita, id_paciente, id_medico }, (error, results) => {
+        if (error) throw error
+        res.redirect('/citasdoctor')
+    })
+
+}
 /*fin agregar medico */
 /* ----- REGISTRO DE PACIENTES  ----------*/
 
