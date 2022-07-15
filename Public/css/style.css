@@ -14,7 +14,9 @@
     --color-verde-paga-hover: rgb(11, 107, 19);
 
 }
-
+.m1{
+    margin-bottom: 1rem;
+}
 
 html {
     font-size: 62.5%;
@@ -319,6 +321,9 @@ header{
 }
 .margin2{
     margin-top: 2rem;
+}
+.bold{
+    font-weight: bold;
 }
 .red{
     color: var(--rojo-cita);
