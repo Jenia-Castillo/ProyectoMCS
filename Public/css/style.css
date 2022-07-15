@@ -317,7 +317,13 @@ header{
 .verde span{
     color: var(--color-verde-paga);
 }
-
+.margin2{
+    margin-top: 2rem;
+}
+.red{
+    color: var(--rojo-cita);
+    font-weight: bold;
+}
 .botones{
     display: grid;
     grid-template-columns: repeat(2, 1fr);

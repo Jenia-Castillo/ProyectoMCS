@@ -317,7 +317,11 @@ router.get('/resultadocita/:id_cita', crud.auth,(req, res) => {
     const id_cita = req.params.id_cita;
     conn.query('SELECT * FROM resultados where id_cita = ?', [id_cita], (error, resultado) => {
         if (error) throw error
-        res.render("usuariopantallas/resultadocita", {resultado:resultado[0]});
+        if(resultado.length > 0){
+            res.render("usuariopantallas/resultadocita", {resultado:resultado[0]});
+        }else{
+            res.render('usuariopantallas/sinresultados', {})
+        }
     })
 })
 
