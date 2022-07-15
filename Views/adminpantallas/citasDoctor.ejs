@@ -36,7 +36,11 @@
                                 <% }) %>
                         href="/redactar/<%= citas.id_cita %>" class="btnVerde w100">Redactar Resultado
                         </a>
-                        <a href="/editar/<%= citas.id_cita %>" class="btn w100">Editar Resultado</a>
+                        <a <% result.forEach(result=> { %>
+                            <%= result.id_cita==citas.id_cita ? "" : "hidden " %>
+                                <% }) %>
+                        href="/redactar/<%= citas.id_cita %>" class="btn w100">Editar Resultado
+                        </a>
                     </div>
                 </div>
                 <% num++; %>
