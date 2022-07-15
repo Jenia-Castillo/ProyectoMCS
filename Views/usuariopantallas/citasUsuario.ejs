@@ -37,10 +37,10 @@
                         </span>
                     </p>
                     <div class="botones">
-                        <a href="/editarcita/<%= citas.id_cita %>" class="btn">Editar Cita</a>
+                        <a <%=citas.estado == 'Pago' ? "hidden " : "" %> href="/editarcita/<%= citas.id_cita %>" class="btn">Editar Cita</a>
                         <a href="/resultadocita/<%= citas.id_cita %>" class="btn">Ver Resultados</a>
-                        <a href="/crearorden/<%= citas.costo %>-<%= citas.id_cita %>" class="btnVerde">Pagar Cita</a>
-                        <a href="/eliminarCita/<%= citas.id_cita %>" class="btnRed">Cancelar Cita</a>
+                        <a <%=citas.estado == 'Pago' ? "hidden " : "" %> href="/crearorden/<%= citas.costo %>-<%= citas.id_cita %>" class="btnVerde">Pagar Cita</a>
+                        <a <%=citas.estado == 'Pago' ? "hidden " : "" %> href="/eliminarCita/<%= citas.id_cita %>" class="btnRed">Cancelar Cita</a>
                     </div>
                 </div>
                 <% num++; %>
