@@ -312,8 +312,13 @@ router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
 })
 
-router.get('/historial', crud.auth,(req, res) => {
-    res.render("usuariopantallas/historial", {});
+//RESULTADO DESDE BOTON CITA
+router.get('/resultadocita/:id_cita', crud.auth,(req, res) => {
+    const id_cita = req.params.id_cita;
+    conn.query('SELECT * FROM resultados where id_cita = ?', [id_cita], (error, resultado) => {
+        if (error) throw error
+        res.render("usuariopantallas/resultadocita", {resultado:resultado[0]});
+    })
 })
 
 router.get('/nosotros', (req, res) => {
