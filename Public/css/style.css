@@ -314,6 +314,10 @@ header{
     color: var(--rojo-hover);
 }
 
+.verde span{
+    color: var(--color-verde-paga);
+}
+
 .botones{
     display: grid;
     grid-template-columns: repeat(2, 1fr);

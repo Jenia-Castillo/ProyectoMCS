@@ -7,7 +7,7 @@
         <div class="citas">
             <% let num=1; citas.forEach(citas=> {
                 %>
-                <div class="cita">
+                <div class="cita <%=citas.estado == 'Pago' ? "verde" : "" %>">
                     <h3>Cita <%= num %>
                     </h3>
                     <p>
@@ -31,7 +31,8 @@
                         </span>
                     </p>
                     <p>
-                        Estado: <span>
+                        Estado de Pago:
+                        <span>
                             <%= citas.estado %>
                         </span>
                     </p>
