@@ -2,6 +2,15 @@
 
     <section class="res contenedor">
   <h1>Pacientes</h1>
+  
+  <form action="">
+    <input type="search" name="paciente" class="pacinp">
+  </form>
+  <div class="busqueda-paciente">
+    <input type="text" class="pacinp">
+    <a href="pacientes"><button class="btn">Buscar Paciente</button></a>
+  </div>
+  
   <div class="resultados">
     <table class="tabla w100">
       <thead class="thead">
@@ -16,7 +25,7 @@
         <tr>
           <td><%= paciente.nombre %></td>
           <td><%= paciente.apellido %></td>
-          <td><a href="/perfilpaciente/<%= paciente.id_paciente %>" class="btn">Ver perfil</a>
+          <td>
           <a href="/editarpaciente/<%= paciente.id_paciente %>" class="btn">Editar</a>
             <a href="/eliminarpaciente/<%= paciente.id_paciente %>" class="btnRed">Eliminar</a>
           </td>
