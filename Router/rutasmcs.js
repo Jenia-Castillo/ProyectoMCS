@@ -5,7 +5,7 @@ const router = express.Router();
 
 const conn = require('../database/database')
 const crud = require('../controllers/crud')
-const {promisify}= require('util');
+const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const pay = require('../controllers/payment.controller')
 
@@ -18,12 +18,12 @@ router.post('/loginAdmin', crud.loginadministrador)
 //LOGOUT
 router.get('/logout', crud.logout)
 //AGREGAR HORARIO
-router.post('/agregarhora',crud.agregarhorario)
+router.post('/agregarhora', crud.agregarhorario)
 
 //EDITAR HORARIOS
-router.post('/editarhora',crud.editarhora)
+router.post('/editarhora', crud.editarhora)
 
-router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
+router.get('/editarhorario/:id_horario', crud.authadmin, (req, res) => {
     const id_horario = req.params.id_horario;
     conn.query('select * from horarios where id_horario=?', [id_horario], (error, horario) => {
         if (error) throw error
@@ -32,29 +32,29 @@ router.get('/editarhorario/:id_horario', crud.authadmin,(req, res) => {
 })
 
 //EDITAR PACIENTE
-router.post('/editarpaciente',crud.editarpaciente)
+router.post('/editarpaciente', crud.editarpaciente)
 
-router.get('/editarpaciente/:id_paciente', crud.authadmin,(req, res) => {
+router.get('/editarpaciente/:id_paciente', crud.authadmin, (req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
         if (error) throw error
         const moment = require('moment');
-        res.render("adminpantallas/editarpaciente", { paciente: paciente[0], moment});
+        res.render("adminpantallas/editarpaciente", { paciente: paciente[0], moment });
     })
 })
 //Perfil paciente
 
-router.get('/perfilpaciente/:id_paciente', crud.authadmin,(req, res) => {
+router.get('/perfilpaciente/:id_paciente', crud.authadmin, (req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('select * from pacientes where id_paciente=?', [id_paciente], (error, paciente) => {
         if (error) throw error
         const moment = require('moment');
-        res.render("adminpantallas/perfilPaciente", { paciente: paciente[0], moment});
+        res.render("adminpantallas/perfilPaciente", { paciente: paciente[0], moment });
     })
 })
 
 // ELIMINAR HORARIO
-router.get('/eliminarhorario/:id_horario', crud.authadmin,(req, res) => {
+router.get('/eliminarhorario/:id_horario', crud.authadmin, (req, res) => {
     const id_horario = req.params.id_horario;
     conn.query('delete from horarios WHERE id_horario = ?', [id_horario], (error, results) => {
         if (error) throw error
@@ -62,7 +62,7 @@ router.get('/eliminarhorario/:id_horario', crud.authadmin,(req, res) => {
     })
 })
 //LOGIN MEDICO
-router.get('/iniciarsesionmed',(req, res) => {
+router.get('/iniciarsesionmed', (req, res) => {
     res.render("adminpantallas/iniciosesionMedico", {});
 })
 
@@ -78,18 +78,18 @@ router.get('/', (req, res) => {
 
 //RENDER DOCTOR PERFIL
 router.get('/iniciodoctor', crud.authmedico, (req, res) => {
-    res.render("adminpantallas/perfilDoctor", {medico:req.medico});
+    res.render("adminpantallas/perfilDoctor", { medico: req.medico });
 })
 
 //RENDER ADMINISTRADOR
 router.get('/inicioadministrador', crud.authadmin, (req, res) => {
-    res.render("adminpantallas/adminPerfil", {admin:req.admin});
+    res.render("adminpantallas/adminPerfil", { admin: req.admin });
 })
 
 /* ============ SERVICIOS CRUD ============= */
 
 //MOSTRAR SERVICIOS
-router.get('/servicios', crud.authadmin,(req, res) => {
+router.get('/servicios', crud.authadmin, (req, res) => {
     conn.query('SELECT * FROM servicios', (error, servicios) => {
         if (error) throw error
         res.render("adminpantallas/servicios", { servicios });
@@ -107,10 +107,10 @@ router.get('/citasprogramadas', async (req, res) => {
 })
 
 //MOSTRAR SERVICIOS servicio probando
-router.get('/crearcita',(req, res) => {
+router.get('/crearcita', (req, res) => {
     conn.query('SELECT * FROM servicios', (error, servicios) => {
         if (error) throw error
-        res.render("usuariopantallas/crearcita", { servicios});
+        res.render("usuariopantallas/crearcita", { servicios });
     })
 })
 //Select dinamico en crearCita
@@ -133,7 +133,7 @@ router.get('/crearcita',(req, res) => {
 })*/
 
 //MOSTRAR SERVICIOS servicio probando
-router.get('/agregarmedico', crud.authadmin,(req, res) => {
+router.get('/agregarmedico', crud.authadmin, (req, res) => {
     conn.query('SELECT id_servicio, servicio FROM servicios ORDER BY servicio ASC', (error, servicios) => {
         if (error) throw error
         res.render("adminpantallas/agregarmedico", { servicios });
@@ -141,22 +141,22 @@ router.get('/agregarmedico', crud.authadmin,(req, res) => {
 })
 
 //AGREGAR SERVICIO
-router.get('/agregarservicio', crud.authadmin,(req, res) => {
+router.get('/agregarservicio', crud.authadmin, (req, res) => {
     res.render("adminpantallas/agregarservicio", {});
 })
 
 //AGREGAR PREGUNTAS FRECUENTES
-router.get('/agregarpreguntas', crud.authadmin,(req, res) => {
-      res.render("adminpantallas/agregarpreguntas", {});
+router.get('/agregarpreguntas', crud.authadmin, (req, res) => {
+    res.render("adminpantallas/agregarpreguntas", {});
 })
 //AGREGAR PREGUNTA
-router.post('/guardarpregunta',crud.guardarpregunta)
+router.post('/guardarpregunta', crud.guardarpregunta)
 
 //GUARDAR SERVICIO
 router.post('/guardar', crud.guardar)
 
 //EDITAR SERVICIO
-router.get('/editarservicio/:servicio', crud.authadmin,(req, res) => {
+router.get('/editarservicio/:servicio', crud.authadmin, (req, res) => {
     const servicio = req.params.servicio;
     conn.query('select * from servicios where servicio=?', [servicio], (error, servicio) => {
         if (error) throw error
@@ -167,7 +167,7 @@ router.get('/editarservicio/:servicio', crud.authadmin,(req, res) => {
 router.post('/editar', crud.editar)
 
 //ELIMINAR SERVICIO, ETC
-router.get('/eliminar/:servicio', crud.authadmin,(req, res) => {
+router.get('/eliminar/:servicio', crud.authadmin, (req, res) => {
     const servicio = req.params.servicio;
     conn.query('delete from servicios WHERE servicio = ?', [servicio], (error, results) => {
         if (error) throw error
@@ -188,14 +188,14 @@ router.get('/eliminarCita/:seleccionada', (req, res) => {
 router.post('/agregarmedico', crud.agregarmedico)
 
 //mostrar medicos
-router.get('/medicos', crud.authadmin,(req, res) => {
+router.get('/medicos', crud.authadmin, (req, res) => {
     conn.query('SELECT * FROM medicos', (error, medicos) => {
         if (error) throw error
         res.render("adminpantallas/medicos", { medicos });
     })
 })
 //eliminar medico
-router.get('/eliminarmedico/:id_medico', crud.authadmin,(req, res) => {
+router.get('/eliminarmedico/:id_medico', crud.authadmin, (req, res) => {
     const id_medico = req.params.id_medico;
     conn.query('DELETE FROM medicos WHERE id_medico=?', [id_medico], (error) => {
         if (error) throw error
@@ -234,11 +234,11 @@ router.post('/registrarpaciente', crud.registrarpaciente)
 /*fin procesos bd paciente */
 /* ============= SERVICIOS CRUD FINAL ============= */
 //RENDER ADMIN
-router.get('/agregarhorario', crud.authadmin,(req, res) => {
+router.get('/agregarhorario', crud.authadmin, (req, res) => {
     res.render("adminpantallas/agregarhorario", {});
 })
 //eliminar paceinte
-router.get('/eliminarpaciente/:id_paciente', crud.authadmin,(req, res) => {
+router.get('/eliminarpaciente/:id_paciente', crud.authadmin, (req, res) => {
     const id_paciente = req.params.id_paciente;
     conn.query('DELETE FROM pacientes WHERE id_paciente=?', [id_paciente], (error) => {
         if (error) throw error
@@ -247,14 +247,14 @@ router.get('/eliminarpaciente/:id_paciente', crud.authadmin,(req, res) => {
 })
 
 //mostrar pacientes
-router.get('/pacientes', crud.authadmin,(req, res) => {
+router.get('/pacientes', crud.authadmin, (req, res) => {
     conn.query("select * from pacientes", (error, pacientes) => {
         if (error) throw error
         res.render("adminpantallas/pacientes", { pacientes });
     });
 })
 
-router.get('/editarhorario', crud.authadmin,(req, res) => {
+router.get('/editarhorario', crud.authadmin, (req, res) => {
     res.render("adminpantallas/editarhorario", {});
 })
 
@@ -262,10 +262,10 @@ router.get('/resutadodecita', (req, res) => {
     res.render("adminpantallas/resultadoCita", {});
 })
 
-router.get('/horarios', crud.authadmin,(req, res) => {
-    conn.query('SELECT * FROM horarios',(error,horarios)=>{
+router.get('/horarios', crud.authadmin, (req, res) => {
+    conn.query('SELECT * FROM horarios', (error, horarios) => {
         if (error) throw error
-        res.render("adminpantallas/horarios", {horarios});
+        res.render("adminpantallas/horarios", { horarios });
 
     })
 })
@@ -290,11 +290,11 @@ router.get('/agregaradmin', (req, res) => {
 fin rutas admin/admins */
 
 //RENDER USUARIO
-router.get('/citasprogramadas', crud.auth,(req, res) => {
+router.get('/citasprogramadas', crud.auth, (req, res) => {
     res.render("usuariopantallas/citasUsuario", {});
 })
 
-router.get('/crearcita', crud.auth,(req, res) => {
+router.get('/crearcita', crud.auth, (req, res) => {
     res.render("usuariopantallas/crearcita", {});
 })
 
@@ -313,13 +313,13 @@ router.get('/formulario', (req, res) => {
 })
 
 //RESULTADO DESDE BOTON CITA
-router.get('/resultadocita/:id_cita', crud.auth,(req, res) => {
+router.get('/resultadocita/:id_cita', crud.auth, (req, res) => {
     const id_cita = req.params.id_cita;
     conn.query('SELECT * FROM resultados where id_cita = ?', [id_cita], (error, resultado) => {
         if (error) throw error
-        if(resultado.length > 0){
-            res.render("usuariopantallas/resultadocita", {resultado:resultado[0]});
-        }else{
+        if (resultado.length > 0) {
+            res.render("usuariopantallas/resultadocita", { resultado: resultado[0] });
+        } else {
             res.render('usuariopantallas/sinresultados', {})
         }
     })
@@ -338,12 +338,12 @@ router.get('/preguntasfrecuentes', (req, res) => {
 
 router.get('/perfilusuario', crud.auth, (req, res) => {
 
-    res.render('usuariopantallas/usuarioperfil', {paciente:req.paciente})
+    res.render('usuariopantallas/usuarioperfil', { paciente: req.paciente })
 })
 
 router.get('/iniciodoctor', crud.authmedico, async (req, res) => {
-    
-    res.render("adminpantallas/perfilDoctor", {medico:req.medico });
+
+    res.render("adminpantallas/perfilDoctor", { medico: req.medico });
 
 })
 
@@ -351,17 +351,20 @@ router.get('/citasdoctor', crud.authmedico, async (req, res) => {
     const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
     conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_medico = ?', [decod.id], (error, citas) => {
         if (error) throw error
-        const moment = require('moment');
-        res.render("adminpantallas/citasDoctor", { citas, moment});
+        conn.query('select * from resultados where id_medico = ?', [decod.id], (error, result) => {
+            const moment = require('moment');
+            res.render("adminpantallas/citasDoctor", { citas, moment, result});
+        })
+
     })
 })
 
-router.get('/redactar/:id_paciente', crud.authmedico, async (req, res) => {
-    const id_paciente = req.params.id_paciente;
+router.get('/redactar/:id_cita', crud.authmedico, async (req, res) => {
+    const id_cita = req.params.id_cita;
     const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_paciente = ?',[id_paciente], (error, citas) => {
+    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_cita = ?', [id_cita], (error, citas) => {
         if (error) throw error
-        res.render('adminpantallas/redactarResultado', {citas:citas[0]})
+        res.render('adminpantallas/redactarResultado', { citas })
     })
 })
 

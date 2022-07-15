@@ -30,7 +30,12 @@
                         </span>
                     </p>
                     <div class="busqueda-paciente">
-                        <a href="/redactar/<%= citas.id_paciente %>"class="btnVerde w100">Redactar Resultado</a>
+
+                        <a <% result.forEach(result=> { %>
+                            <%=result.id_cita==citas.id_cita ? "hidden " : "" %>
+                                <% }) %>
+                        href="/redactar/<%= citas.id_cita %>" class="btnVerde w100">Redactar Resultado
+                        </a>
                     </div>
                 </div>
                 <% num++; %>
