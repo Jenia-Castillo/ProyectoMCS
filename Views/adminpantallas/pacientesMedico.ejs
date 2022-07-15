@@ -1,0 +1,46 @@
+<%- include('../Templates/headerMedico') %>
+
+    <section class="res contenedor">
+  <h1>Pacientes</h1>
+  
+  <form action="/buscarpaciente" method="get">
+    <input type="text" class="pacinp" name="paciente" required>
+
+   
+    <input type="submit" class="btn" value="Buscar Paciente">
+
+  </form>
+  
+  
+  
+  
+ <!--zona buena-->
+  
+  <div class="resultados">
+    <table class="tabla w100">
+      <thead class="thead">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Modificar</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <% pacientes.forEach(paciente => { %>
+        <tr>
+          <td><%= paciente.nombre %></td>
+          <td><%= paciente.apellido %></td>
+          <td><a href="/perfilpaciente/<%= paciente.id_paciente %>" class="btn">Ver perfil</a>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
+</body>
+<script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+
+</html>
