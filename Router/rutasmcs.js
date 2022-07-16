@@ -81,6 +81,19 @@ router.get('/iniciodoctor', crud.authmedico, (req, res) => {
     res.render("adminpantallas/perfilDoctor", { medico: req.medico });
 })
 
+
+//MOSTRAR PACIENTES VISTA DEL MEDICO
+router.get('/pacientesmedico', crud.authmedico, (req, res) => {
+    conn.query('SELECT * FROM pacientes', (error, pacientes) => {
+        if (error) throw error
+        res.render("adminpantallas/pacientesmedico", { pacientes });
+    })
+})
+
+
+
+
+
 //RENDER ADMINISTRADOR
 router.get('/inicioadministrador', crud.authadmin, (req, res) => {
     res.render("adminpantallas/adminPerfil", { admin: req.admin });

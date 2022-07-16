@@ -1,46 +1,45 @@
 <%- include('../Templates/headerMedico') %>
-
-    <section class="res contenedor">
+<section class="res contenedor">
   <h1>Pacientes</h1>
-  
-  <form action="/buscarpaciente" method="get">
-    <input type="text" class="pacinp" name="paciente" required>
-
-   
-    <input type="submit" class="btn" value="Buscar Paciente">
-
-  </form>
-  
-  
-  
-  
- <!--zona buena-->
-  
-  <div class="resultados">
-    <table class="tabla w100">
-      <thead class="thead">
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Modificar</th>
-        </tr>
-      </thead>
-      <tbody class="tbody">
-        <% pacientes.forEach(paciente => { %>
-        <tr>
-          <td><%= paciente.nombre %></td>
-          <td><%= paciente.apellido %></td>
-          <td><a href="/perfilpaciente/<%= paciente.id_paciente %>" class="btn">Ver perfil</a>
-          </td>
-        </tr>
-        <% }); %>
-      </tbody>
-    </table>
-
+  <div class="btnagregarservicioizq">
+    <input id="buscar" type="text" placeholder="Buscar..." class="controls">
   </div>
-</section>
 
+
+    <div class="resultados">
+
+      <table class="tabla w100">
+        <thead class="thead">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Perfil</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpotabla" class="tbody">
+          <% pacientes.forEach(paciente => { %>
+          <tr>
+            <td><%= paciente.nombre %></td>
+            <td><%= paciente.apellido %></td>
+            <td><a href="/perfilpaciente/<%= paciente.id_paciente %>" class="btn">Ver perfil</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </body>
-<script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#buscar").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#cuerpotabla tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+  </script>
 
-</html>
+  </html>
