@@ -1,17 +1,13 @@
 <%- include('../Templates/header') %>
 
-    <section class="res contenedor">
+<section class="res contenedor">
   <h1>Pacientes</h1>
-  
-  <form action="">
-    <input type="search" name="paciente" class="pacinp">
-  </form>
-  <div class="busqueda-paciente">
-    <input type="text" class="pacinp">
-    <a href="pacientes"><button class="btn">Buscar Paciente</button></a>
+  <div class="btnagregarservicioizq">
+    <input id="buscar" type="text" placeholder="Buscar..." class="controls">
   </div>
-  
+
   <div class="resultados">
+
     <table class="tabla w100">
       <thead class="thead">
         <tr>
@@ -20,13 +16,13 @@
           <th>Modificar</th>
         </tr>
       </thead>
-      <tbody class="tbody">
+      <tbody id="cuerpotabla" class="tbody">
         <% pacientes.forEach(paciente => { %>
         <tr>
           <td><%= paciente.nombre %></td>
           <td><%= paciente.apellido %></td>
           <td>
-          <a href="/editarpaciente/<%= paciente.id_paciente %>" class="btn">Editar</a>
+            <a href="/editarpaciente/<%= paciente.id_paciente %>" class="btn">Editar</a>
             <a href="/eliminarpaciente/<%= paciente.id_paciente %>" class="btnRed">Eliminar</a>
           </td>
         </tr>
@@ -38,6 +34,15 @@
 </section>
 
 </body>
-<script src="https://kit.fontawesome.com/d68418c0ce.js" crossorigin="anonymous"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#buscar").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#cuerpotabla tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
 </html>
