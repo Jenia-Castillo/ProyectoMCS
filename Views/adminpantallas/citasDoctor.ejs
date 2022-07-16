@@ -1,5 +1,6 @@
 <%- include('../Templates/headerMedico') %>
     <section class="citas-prog contenedor">
+
         <div class="inicio-cita">
             <h2>Citas Programadas</h2>
         </div>
@@ -29,18 +30,15 @@
                             <%= citas.id_servicio %>
                         </span>
                     </p>
-                    <div class="busqueda-paciente">
+                    <div class="grid">
 
                         <a <% result.forEach(result=> { %>
                             <%=result.id_cita==citas.id_cita ? "hidden " : "" %>
                                 <% }) %>
                         href="/redactar/<%= citas.id_cita %>" class="btnVerde w100">Redactar Resultado
                         </a>
-                        <a <% result.forEach(result=> { %>
-                            <%= result.id_cita==citas.id_cita ? "" : "hidden " %>
-                                <% }) %>
-                        href="/redactar/<%= citas.id_cita %>" class="btn w100">Editar Resultado
-                        </a>
+                        
+                        <a href="/editarresultado/<%= citas.id_cita %>" class="btn w100">Editar Resultado</a>
                     </div>
                 </div>
                 <% num++; %>

@@ -307,6 +307,29 @@ router.get('/editarcita/:seleccionada', (req, res) => {
     })
 })
 
+router.get('/erroreditarresult', (req, res) => {
+    res.render("adminpantallas/redactarrestError", {});
+})
+
+router.post('/updateresultado', crud.updateresultado);
+
+router.get('/editarresultado/:id_cita', (req, res) => {
+    const id_cita = req.params.id_cita;
+    conn.query('select * from resultados where id_cita = ?', [id_cita], (error, citas) => {
+
+        if (citas.length > 0){
+
+            res.render("adminpantallas/editarResultado", { citas });
+            
+        }else{
+
+            res.redirect('/erroreditarresult')
+        
+        }
+    })
+})
+
+
 
 router.get('/formulario', (req, res) => {
     res.render("usuariopantallas/formulario", {});
@@ -359,9 +382,8 @@ router.get('/citasdoctor', crud.authmedico, async (req, res) => {
     })
 })
 
-router.get('/redactar/:id_cita', crud.authmedico, async (req, res) => {
+router.get('/redactar/:id_cita', crud.authmedico, (req, res) => {
     const id_cita = req.params.id_cita;
-    const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
     conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, citas.id_paciente FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_cita = ?', [id_cita], (error, citas) => {
         if (error) throw error
         res.render('adminpantallas/redactarResultado', { citas })

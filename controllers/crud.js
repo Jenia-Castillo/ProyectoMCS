@@ -264,6 +264,7 @@ exports.agregarmedico = async (req, res) => {
     })
 
 }
+
 exports.agregarresult = async (req, res) => {
 
     const id_cita = req.body.id_cita;
@@ -272,6 +273,18 @@ exports.agregarresult = async (req, res) => {
     const descripcion = req.body.descripcion
 
     conn.query('insert into resultados set ?', { descripcion, id_cita, id_paciente, id_medico }, (error, results) => {
+        if (error) throw error
+        res.redirect('/citasdoctor')
+    })
+
+}
+
+exports.updateresultado = (req, res)=>{
+
+    const id_cita = req.body.id_cita;
+    const descripcion = req.body.descripcion
+
+    conn.query('update resultados set ? where id_cita = ?', [{descripcion}, id_cita], (error, results) => {
         if (error) throw error
         res.redirect('/citasdoctor')
     })

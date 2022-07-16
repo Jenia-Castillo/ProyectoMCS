@@ -1,17 +1,14 @@
 <%- include('../Templates/headerMedico') %>
 <section class="aggHorario contenedor">
     <h1>Redactar Resultado</h1>
-
-    <form action="/agregarresultado" method="post">
+    <form action="/updateresultado" method="post">
       
       <% citas.forEach(citas => { %>
 
         <div class="agregarservicio">
-          <input hidden name="id_medico" value="<%=citas.id_medico %> ">
           <input hidden name="id_cita" value="<%= citas.id_cita %> ">
-          <input hidden name="id_paciente" value="<%= citas.id_paciente %> ">
           <label for="desc">Ingrese el resultado:</label>
-          <textarea class="texta" name="descripcion" id="desc"></textarea>
+          <textarea class="texta" name="descripcion" id="desc">ACTUALIZACIÓN: <%= citas.descripcion %> </textarea>
           <div class="centrar">
             <input type="submit" class="btn" value="Enviar">
             <a href="/citasdoctor">
