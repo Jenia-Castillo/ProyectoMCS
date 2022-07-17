@@ -385,7 +385,7 @@ router.get('/iniciodoctor', crud.authmedico, async (req, res) => {
 
 router.get('/citasdoctor', crud.authmedico, async (req, res) => {
     const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
-    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, pacientes.nombre FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio JOIN pacientes on citas.id_paciente = paciente.id_paciente where id_medico = ?', [decod.id], (error, citas) => {
+    conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha,citas.id_medico, citas.estado as estado, servicios.servicio as id_servicio, pacientes.nombre FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio JOIN pacientes ON citas.id_paciente = pacientes.id_paciente where id_medico = ?;', [decod.id], (error, citas) => {
         if (error) throw error
         conn.query('select * from resultados where id_medico = ?', [decod.id], (error, result) => {
             const moment = require('moment');
