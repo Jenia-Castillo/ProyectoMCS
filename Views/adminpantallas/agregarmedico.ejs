@@ -24,9 +24,7 @@
         <select class="controls" name="id_servicio" required>
           <option disabled selected>Escoger Servicio</option>
           <% servicios.forEach(servicio=> { %>
-
-            <option>
-              <%= servicio.id_servicio%>
+            <option value="<%= servicio.id_servicio%>"><%= servicio.servicio%></option>
             <% }); %>
 
         </select>
