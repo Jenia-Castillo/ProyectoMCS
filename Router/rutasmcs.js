@@ -202,7 +202,7 @@ router.post('/agregarmedico', crud.agregarmedico)
 
 //mostrar medicos
 router.get('/medicos', crud.authadmin, (req, res) => {
-    conn.query('SELECT * FROM medicos', (error, medicos) => {
+    conn.query('SELECT medicos.id_medico as id_medico, medicos.cedula as cedula, medicos.nombre as nombre, medicos.apellido as apellido, medicos.correo as correo, servicios.servicio as servicio FROM medicos JOIN servicios on medicos.id_servicio = servicios.id_servicio', (error, medicos) => {
         if (error) throw error
         res.render("adminpantallas/medicos", { medicos });
     })
