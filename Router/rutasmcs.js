@@ -109,8 +109,8 @@ router.get('/servicios', crud.authadmin, (req, res) => {
     })
 })
 
-//MOSTRAR CITAS //CAMBIAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO CUANDO SEPA COMO FUNCA LOGIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN
-router.get('/citasprogramadas', async (req, res) => {
+//MOSTRAR CITAS
+router.get('/citasprogramadas', crud.auth, async (req, res) => {
     const decod = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO)
     conn.query('SELECT citas.id_cita as id_cita, citas.costo as costo, citas.hora as hora, citas.fecha as fecha, citas.estado as estado, servicios.servicio as id_servicio FROM citas JOIN servicios on citas.id_servicio = servicios.id_servicio where id_paciente = ?', [decod.id], (error, citas) => {
         if (error) throw error
