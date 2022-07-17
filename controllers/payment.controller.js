@@ -28,7 +28,7 @@ exports.crearOrden = async (req, res) =>{
             brand_name: "Medical Costumer Service",
             landing_page: "NO_PREFERENCE",
             user_action: "PAY_NOW",
-            return_url: "http://localhost:3000/",
+            return_url: "http://localhost:3000/capturaorden",
             cancel_url: "http://localhost:3000/cancelaorden",
           },
         };
